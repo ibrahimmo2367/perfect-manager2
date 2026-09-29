@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#090b10">
+<title>PERFECT MANAGER</title>
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+:root{
+ --bg:#080a0f;
+ --card:#11151d;
+ --card2:#171c25;
+ --line:#252c37;
+ --text:#f5f7fa;
+ --muted:#8993a2;
+ --green:#9cff3b;
+ --green2:#6ed51e;
+ --red:#ff5c68;
+ --blue:#5ba7ff;
+ --yellow:#ffc857;
+ --purple:#aa8cff;
+}
+
+html,body{
+ margin:0;
+ min-height:100%;
+ background:var(--bg);
+ color:var(--text);
+ font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+ background:
+ radial-gradient(circle at 85% -5%,#21401d 0,transparent 30%),
+ var(--bg);
+}
+
+button,input,select{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
+
+.app{
+ max-width:650px;
+ margin:auto;
+ min-height:100vh;
+ padding-bottom:90px;
+}
+
+/* HEADER */
+
+.top{
+ padding:18px 16px 10px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+
+.logo{
+ width:42px;
+ height:42px;
+ border-radius:14px;
+ background:linear-gradient(145deg,var(--green),#4d9d12);
+ color:#071006;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:22px;
+ font-weight:1000;
+ box-shadow:0 10px 30px #9cff3b25;
+}
+
+.brand b{
+ display:block;
+ font-size:17px;
+ letter-spacing:.5px;
+}
+
+.brand small{
+ color:var(--muted);
+ font-size:8px;
+ letter-spacing:2px;
+}
+
+.date-chip{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:12px;
+ padding:8px 10px;
+ color:var(--muted);
+ font-size:9px;
+}
+
+/* PAGES */
+
+.page{
+ display:none;
+ padding:8px 15px;
+}
+
+.page.active{
+ display:block;
+}
+
+.head{
+ margin:8px 2px 15px;
+}
+
+.head h2{
+ margin:0;
+ font-size:23px;
+}
+
+.head p{
+ margin:5px 0 0;
+ color:var(--muted);
+ font-size:10px;
+}
+
+/* DAY CARD */
+
+.day-card{
+ background:linear-gradient(145deg,#151b22,#0d1117);
+ border:1px solid var(--line);
+ border-radius:23px;
+ padding:17px;
+ margin-bottom:12px;
+}
+
+.day-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.day-title{
+ font-size:12px;
+ font-weight:bold;
+}
+
+.day-status{
+ font-size:9px;
+ padding:6px 9px;
+ border-radius:9px;
+ background:#ffffff08;
+ color:var(--muted);
+}
+
+.day-status.open{
+ color:#071006;
+ background:var(--green);
+}
+
+.day-info{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px;
+ margin-top:14px;
+}
+
+.day-box{
+ background:#ffffff06;
+ border:1px solid #ffffff0a;
+ border-radius:13px;
+ padding:10px;
+}
+
+.day-box span{
+ display:block;
+ color:var(--muted);
+ font-size:8px;
+}
+
+.day-box strong{
+ display:block;
+ margin-top:5px;
+ font-size:13px;
+}
+
+.day-button{
+ width:100%;
+ border:0;
+ border-radius:13px;
+ padding:13px;
+ margin-top:12px;
+ background:var(--green);
+ color:#071006;
+ font-weight:900;
+}
+
+.day-button.close-day{
+ background:var(--red);
+ color:white;
+}
+
+/* HERO */
+
+.hero{
+ background:
+ radial-gradient(circle at 90% 0,#9cff3b20,transparent 35%),
+ linear-gradient(145deg,#171d25,#0e1218);
+ border:1px solid #303743;
+ border-radius:27px;
+ padding:21px;
+ box-shadow:0 20px 50px #0006;
+}
+
+.hero-label{
+ color:var(--muted);
+ font-size:10px;
+}
+
+.hero-number{
+ font-size:34px;
+ font-weight:1000;
+ margin-top:9px;
+}
+
+.hero-note{
+ color:#687281;
+ font-size:9px;
+ margin-top:5px;
+}
+
+.hero-buttons{
+ display:flex;
+ gap:8px;
+ margin-top:17px;
+}
+
+.hero-buttons button{
+ flex:1;
+ padding:12px;
+ border-radius:13px;
+ border:1px solid #ffffff12;
+ background:#ffffff08;
+ color:white;
+}
+
+.hero-buttons .main{
+ background:var(--green);
+ color:#071006;
+ border:0;
+ font-weight:bold;
+}
+
+/* STATS */
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
+ margin-top:10px;
+}
+
+.stat{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:13px;
+}
+
+.stat-icon{
+ font-size:18px;
+}
+
+.stat small{
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ margin-top:8px;
+}
+
+.stat strong{
+ display:block;
+ margin-top:4px;
+ font-size:16px;
+}
+
+/* SERVICES */
+
+.section{
+ margin-top:19px;
+}
+
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:9px;
+}
+
+.section-head h3{
+ margin:0;
+ font-size:13px;
+}
+
+.section-head button{
+ background:none;
+ border:0;
+ color:var(--green);
+ font-size:9px;
+}
+
+.services{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+}
+
+.service{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:12px 9px;
+}
+
+.service-icon{
+ width:34px;
+ height:34px;
+ border-radius:11px;
+ background:var(--card2);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+.service-name{
+ color:#aeb6c2;
+ font-size:9px;
+ margin-top:9px;
+}
+
+.service-value{
+ font-size:14px;
+ font-weight:900;
+ margin-top:4px;
+}
+
+.service-fee{
+ color:var(--green);
+ font-size:8px;
+ margin-top:4px;
+}
+
+/* QUICK */
+
+.quick{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+}
+
+.quick button{
+ background:var(--card);
+ color:white;
+ border:1px solid var(--line);
+ border-radius:15px;
+ padding:11px 5px;
+}
+
+.quick span{
+ display:block;
+ font-size:19px;
+ margin-bottom:5px;
+}
+
+.quick small{
+ font-size:8px;
+}
+
+/* PRODUCTS */
+
+.search{
+ position:relative;
+ margin-bottom:9px;
+}
+
+.search input{
+ width:100%;
+ padding:13px 40px 13px 12px;
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:14px;
+ color:white;
+ outline:0;
+}
+
+.search span{
+ position:absolute;
+ right:14px;
+ top:12px;
+ color:var(--muted);
+}
+
+.primary{
+ width:100%;
+ border:0;
+ border-radius:13px;
+ padding:13px;
+ background:var(--green);
+ color:#071006;
+ font-weight:900;
+}
+
+.product{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:12px;
+ margin-top:8px;
+}
+
+.product-main{
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+
+.product-icon{
+ width:44px;
+ height:44px;
+ border-radius:13px;
+ background:var(--card2);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:20px;
+}
+
+.product-info{
+ flex:1;
+ min-width:0;
+}
+
+.product-name{
+ font-size:12px;
+ font-weight:bold;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+
+.product-meta{
+ color:var(--muted);
+ font-size:8px;
+ margin-top:5px;
+}
+
+.product-price{
+ text-align:left;
+ font-size:13px;
+ font-weight:bold;
+}
+
+.product-price small{
+ display:block;
+ color:var(--muted);
+ font-size:8px;
+ margin-top:3px;
+}
+
+.product-bottom{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-top:1px solid var(--line);
+ margin-top:10px;
+ padding-top:10px;
+}
+
+.qty{
+ display:flex;
+ align-items:center;
+ gap:6px;
+}
+
+.qty button{
+ width:29px;
+ height:29px;
+ border-radius:9px;
+ background:var(--card2);
+ border:1px solid var(--line);
+ color:white;
+}
+
+.qty b{
+ min-width:25px;
+ text-align:center;
+}
+
+.mini-actions{
+ display:flex;
+ gap:5px;
+}
+
+.mini{
+ border:1px solid var(--line);
+ background:var(--card2);
+ color:white;
+ border-radius:8px;
+ padding:7px 9px;
+ font-size:8px;
+}
+
+/* LIST */
+
+.list{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ margin-top:10px;
+}
+
+.item{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:12px;
+}
+
+.row{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+
+.item-title{
+ font-size:11px;
+ font-weight:bold;
+}
+
+.item-sub{
+ color:var(--muted);
+ font-size:8px;
+ margin-top:5px;
+}
+
+.item-value{
+ font-size:13px;
+ font-weight:bold;
+ text-align:left;
+}
+
+/* MONEY */
+
+.money-card{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:13px;
+ margin-bottom:7px;
+}
+
+.money-icon{
+ width:38px;
+ height:38px;
+ border-radius:12px;
+ background:var(--card2);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:17px;
+}
+
+.money-name{
+ font-size:11px;
+ font-weight:bold;
+}
+
+.money-desc{
+ color:var(--muted);
+ font-size:8px;
+ margin-top:4px;
+}
+
+.money-value{
+ font-size:14px;
+ font-weight:900;
+}
+
+/* MODAL */
+
+.modal-bg{
+ position:fixed;
+ inset:0;
+ background:#000c;
+ backdrop-filter:blur(6px);
+ display:none;
+ align-items:flex-end;
+ z-index:100;
+}
+
+.modal-bg.show{
+ display:flex;
+}
+
+.modal{
+ width:100%;
+ max-width:650px;
+ max-height:93vh;
+ overflow:auto;
+ margin:auto;
+ background:#0e131a;
+ border:1px solid var(--line);
+ border-radius:25px 25px 0 0;
+ padding:18px;
+}
+
+.modal-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:15px;
+}
+
+.modal-title{
+ font-size:17px;
+ font-weight:900;
+}
+
+.close{
+ width:34px;
+ height:34px;
+ border:0;
+ border-radius:10px;
+ background:var(--card2);
+ color:white;
+ font-size:20px;
+}
+
+label{
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ margin:9px 2px 5px;
+}
+
+.input{
+ width:100%;
+ padding:13px;
+ border:1px solid var(--line);
+ background:var(--card);
+ color:white;
+ border-radius:13px;
+ outline:0;
+}
+
+.input:focus{
+ border-color:var(--green);
+}
+
+.modal-btn{
+ width:100%;
+ border:0;
+ padding:14px;
+ border-radius:13px;
+ background:var(--green);
+ color:#071006;
+ font-weight:900;
+ margin-top:13px;
+}
+
+.modal-btn.red{
+ background:var(--red);
+ color:white;
+}
+
+/* OPEN DAY */
+
+.open-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px;
+}
+
+.open-account{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:10px;
+}
+
+.open-account span{
+ display:block;
+ color:var(--muted);
+ font-size:9px;
+ margin-bottom:6px;
+}
+
+.open-total{
+ margin-top:12px;
+ background:#9cff3b0b;
+ border:1px solid #9cff3b22;
+ border-radius:15px;
+ padding:13px;
+ text-align:center;
+}
+
+.open-total small{
+ color:var(--muted);
+ font-size:9px;
+}
+
+.open-total strong{
+ display:block;
+ color:var(--green);
+ font-size:21px;
+ margin-top:5px;
+}
+
+/* CLOSE TABLE */
+
+.close-row{
+ display:grid;
+ grid-template-columns:1.3fr 1fr 1fr 1fr;
+ gap:4px;
+ padding:9px 3px;
+ border-bottom:1px solid var(--line);
+ font-size:8px;
+ align-items:center;
+}
+
+.close-row strong{
+ font-size:9px;
+}
+
+.close-head{
+ color:var(--muted);
+ font-size:7px;
+}
+
+.diff-positive{
+ color:var(--green);
+}
+
+.diff-negative{
+ color:var(--red);
+}
+
+/* NAV */
+
+.nav{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:70px;
+ max-width:650px;
+ margin:auto;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ background:#0c1016ee;
+ backdrop-filter:blur(18px);
+ border-top:1px solid var(--line);
+ z-index:50;
+}
+
+.nav button{
+ border:0;
+ background:none;
+ color:#687282;
+ font-size:8px;
+}
+
+.nav button.active{
+ color:var(--green);
+}
+
+.nav-icon{
+ display:block;
+ font-size:19px;
+ margin-bottom:4px;
+}
+
+/* FAB */
+
+.fab{
+ position:fixed;
+ right:max(18px,calc((100vw - 650px)/2 + 18px));
+ bottom:83px;
+ width:53px;
+ height:53px;
+ border:0;
+ border-radius:17px;
+ background:var(--green);
+ color:#071006;
+ font-size:27px;
+ font-weight:900;
+ box-shadow:0 12px 35px #9cff3b40;
+ z-index:40;
+}
+
+.empty{
+ text-align:center;
+ padding:35px 10px;
+ color:var(--muted);
+ font-size:10px;
+}
+
+.toast{
+ position:fixed;
+ left:50%;
+ bottom:82px;
+ transform:translate(-50%,20px);
+ background:#1c2430;
+ border:1px solid var(--line);
+ color:white;
+ padding:11px 16px;
+ border-radius:12px;
+ font-size:10px;
+ opacity:0;
+ pointer-events:none;
+ transition:.25s;
+ z-index:200;
+}
+
+.toast.show{
+ opacity:1;
+ transform:translate(-50%,0);
+}
+
+.green{color:var(--green)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.yellow{color:var(--yellow)}
+.purple{color:var(--purple)}
+
+@media(max-width:380px){
+ .services{grid-template-columns:1fr}
+ .quick{grid-template-columns:repeat(2,1fr)}
+ .hero-number{font-size:29px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="top">
+
+ <div class="brand">
+  <div class="logo">✓</div>
+  <div>
+   <b>PERFECT</b>
+   <small>MANAGER</small>
+  </div>
+ </div>
+
+ <div class="date-chip" id="headerDate"></div>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section class="page active" id="home">
+
+ <div class="day-card">
+
+  <div class="day-top">
+   <div class="day-title">📅 إدارة اليوم</div>
+   <div class="day-status" id="dayBadge">مغلق</div>
+  </div>
+
+  <div class="day-info">
+
+   <div class="day-box">
+    <span>تاريخ اليوم</span>
+    <strong id="dayDate">—</strong>
+   </div>
+
+   <div class="day-box">
+    <span>وقت الفتح</span>
+    <strong id="dayOpenedAt">—</strong>
+   </div>
+
+   <div class="day-box">
+    <span>رصيد البداية</span>
+    <strong id="dayStartTotal">0 ج.م</strong>
+   </div>
+
+   <div class="day-box">
+    <span>الرصيد الحالي</span>
+    <strong id="dayCurrentTotal">0 ج.م</strong>
+   </div>
+
+  </div>
+
+  <button
+   class="day-button"
+   id="dayButton"
+   onclick="handleDayButton()">
+   فتح اليوم
+  </button>
+
+ </div>
+
+
+ <div class="hero">
+
+  <div class="hero-label">💰 إجمالي الدرج</div>
+
+  <div class="hero-number" id="heroTotal">0 ج.م</div>
+
+  <div class="hero-note">
+   درج المبيعات + درج الكاش
+  </div>
+
+  <div class="hero-buttons">
+
+   <button class="main" onclick="openModal('saleModal')">
+    + بيع
+   </button>
+
+   <button onclick="openModal('movementModal')">
+    حركة
+   </button>
+
+  </div>
+
+ </div>
+
+
+ <div class="stats">
+
+  <div class="stat">
+   <div class="stat-icon">🧾</div>
+   <small>مبيعات اليوم</small>
+   <strong id="homeSales">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">📈</div>
+   <small>الربح اليوم</small>
+   <strong class="green" id="homeProfit">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💸</div>
+   <small>مصروفات اليوم</small>
+   <strong class="red" id="homeExpenses">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💎</div>
+   <small>عمولات اليوم</small>
+   <strong class="green" id="homeCommission">0</strong>
+  </div>
+
+ </div>
+
+
+ <div class="section">
+
+  <div class="section-head">
+   <h3>الخدمات</h3>
+   <button onclick="goPage('money')">عرض الكل</button>
+  </div>
+
+  <div class="services">
+
+   <div class="service">
+    <div class="service-icon">📱</div>
+    <div class="service-name">Vodafone Cash</div>
+    <div class="service-value" id="homeVodafone">0</div>
+    <div class="service-fee">
+     عمولات <span id="homeVodafoneFee">0</span>
+    </div>
+   </div>
+
+   <div class="service">
+    <div class="service-icon">💳</div>
+    <div class="service-name">InstaPay</div>
+    <div class="service-value" id="homeInstapay">0</div>
+    <div class="service-fee">
+     عمولات <span id="homeInstapayFee">0</span>
+    </div>
+   </div>
+
+   <div class="service">
+    <div class="service-icon">⚙️</div>
+    <div class="service-name">رصيد الماكينة</div>
+    <div class="service-value" id="homeMachine">0</div>
+    <div class="service-fee">
+     عمولات <span id="homeMachineFee">0</span>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="section">
+
+  <div class="section-head">
+   <h3>اختصارات</h3>
+  </div>
+
+  <div class="quick">
+
+   <button onclick="openModal('productModal')">
+    <span>📦</span>
+    <small>منتج</small>
+   </button>
+
+   <button onclick="openModal('repairModal')">
+    <span>🔧</span>
+    <small>إصلاح</small>
+   </button>
+
+   <button onclick="openModal('serviceModal')">
+    <span>📱</span>
+    <small>خدمة</small>
+   </button>
+
+   <button onclick="openModal('expenseModal')">
+    <span>💸</span>
+    <small>مصروف</small>
+   </button>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="page" id="products">
+
+ <div class="head">
+  <h2>المخزون</h2>
+  <p>تحكم في المنتجات والكميات</p>
+ </div>
+
+ <div class="search">
+  <span>⌕</span>
+  <input
+   id="productSearch"
+   placeholder="ابحث عن منتج..."
+   oninput="renderProducts()">
+ </div>
+
+ <button class="primary" onclick="newProduct()">
+  + إضافة منتج
+ </button>
+
+ <div id="productsList"></div>
+
+</section>
+
+
+<!-- ================= SALES ================= -->
+
+<section class="page" id="sales">
+
+ <div class="head">
+  <h2>المبيعات</h2>
+  <p>سجل ومتابعة كل عمليات البيع</p>
+ </div>
+
+ <div class="stats">
+
+  <div class="stat">
+   <div class="stat-icon">🧾</div>
+   <small>إجمالي المبيعات</small>
+   <strong id="salesTotal">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">📈</div>
+   <small>أرباح المنتجات</small>
+   <strong class="green" id="salesProfit">0</strong>
+  </div>
+
+ </div>
+
+ <button class="primary" style="margin-top:10px"
+  onclick="openModal('saleModal')">
+  + تسجيل بيع
+ </button>
+
+ <div id="salesList" class="list"></div>
+
+</section>
+
+
+<!-- ================= MONEY ================= -->
+
+<section class="page" id="money">
+
+ <div class="head">
+  <h2>الدرج والخدمات</h2>
+  <p>كل الأرصدة منفصلة داخل النظام</p>
+ </div>
+
+ <div class="hero">
+  <div class="hero-label">💰 إجمالي الدرج</div>
+  <div class="hero-number" id="moneyTotal">0 ج.م</div>
+  <div class="hero-note">درج المبيعات + درج الكاش فقط</div>
+ </div>
+
+
+ <div class="section">
+
+  <div class="section-head">
+   <h3>أدراج الفلوس</h3>
+  </div>
+
+  <div class="money-card">
+   <div class="row">
+
+    <div class="row">
+     <div class="money-icon">🧾</div>
+     <div>
+      <div class="money-name">درج المبيعات</div>
+      <div class="money-desc">فلوس عمليات البيع</div>
+     </div>
+    </div>
+
+    <div class="money-value" id="moneySalesDrawer">0</div>
+
+   </div>
+  </div>
+
+
+  <div class="money-card">
+   <div class="row">
+
+    <div class="row">
+     <div class="money-icon">💵</div>
+     <div>
+      <div class="money-name">درج الكاش</div>
+      <div class="money-desc">النقدية الأخرى</div>
+     </div>
+    </div>
+
+    <div class="money-value" id="moneyCash">0</div>
+
+   </div>
+  </div>
+
+ </div>
+
+
+ <div class="section">
+
+  <div class="section-head">
+   <h3>الخدمات</h3>
+  </div>
+
+  <div class="money-card">
+   <div class="row">
+
+    <div class="row">
+     <div class="money-icon">📱</div>
+     <div>
+      <div class="money-name">Vodafone Cash</div>
+      <div class="money-desc">
+       عمولات <span id="moneyVodafoneFee">0</span>
+      </div>
+     </div>
+    </div>
+
+    <div class="money-value blue" id="moneyVodafone">0</div>
+
+   </div>
+  </div>
+
+
+  <div class="money-card">
+   <div class="row">
+
+    <div class="row">
+     <div class="money-icon">💳</div>
+     <div>
+      <div class="money-name">InstaPay</div>
+      <div class="money-desc">
+       عمولات <span id="moneyInstapayFee">0</span>
+      </div>
+     </div>
+    </div>
+
+    <div class="money-value blue" id="moneyInstapay">0</div>
+
+   </div>
+  </div>
+
+
+  <div class="money-card">
+   <div class="row">
+
+    <div class="row">
+     <div class="money-icon">⚙️</div>
+     <div>
+      <div class="money-name">رصيد الماكينة</div>
+      <div class="money-desc">
+       عمولات <span id="moneyMachineFee">0</span>
+      </div>
+     </div>
+    </div>
+
+    <div class="money-value purple" id="moneyMachine">0</div>
+
+   </div>
+  </div>
+
+ </div>
+
+
+ <button class="primary" onclick="openModal('serviceModal')">
+  + عملية خدمة
+ </button>
+
+ <button class="primary"
+  style="background:var(--card2);color:white;margin-top:8px"
+  onclick="openModal('movementModal')">
+  حركة على درج الكاش
+ </button>
+
+
+ <div class="section">
+  <div class="section-head">
+   <h3>آخر العمليات</h3>
+  </div>
+
+  <div id="movementsList" class="list"></div>
+ </div>
+
+</section>
+
+
+<!-- ================= REPORTS ================= -->
+
+<section class="page" id="reports">
+
+ <div class="head">
+  <h2>التقارير</h2>
+  <p>ملخص حركة المحل</p>
+ </div>
+
+ <div class="stats">
+
+  <div class="stat">
+   <div class="stat-icon">🧾</div>
+   <small>المبيعات</small>
+   <strong id="reportSales">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">📈</div>
+   <small>أرباح المنتجات</small>
+   <strong class="green" id="reportProductProfit">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">🔧</div>
+   <small>أرباح الإصلاحات</small>
+   <strong id="reportRepairProfit">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💎</div>
+   <small>العمولات</small>
+   <strong class="green" id="reportCommission">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💸</div>
+   <small>المصروفات</small>
+   <strong class="red" id="reportExpenses">0</strong>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">📦</div>
+   <small>قيمة المخزون</small>
+   <strong class="yellow" id="reportStock">0</strong>
+  </div>
+
+ </div>
+
+
+ <div class="section">
+  <div class="section-head">
+   <h3>إدارة اليوم</h3>
+  </div>
+
+  <div class="money-card">
+
+   <div class="row">
+
+    <div>
+     <div class="money-name" id="reportDayStatus">
+      اليوم مغلق
+     </div>
+
+     <div class="money-desc">
+      افتح اليوم لتسجيل أرصدة البداية
+     </div>
+    </div>
+
+    <button class="mini" onclick="handleDayButton()">
+     فتح / إغلاق
+    </button>
+
+   </div>
+
+  </div>
+ </div>
+
+</section>
+
+
+<!-- NAV -->
+
+<nav class="nav">
+
+ <button class="active" onclick="goPage('home',this)">
+  <span class="nav-icon">⌂</span>
+  الرئيسية
+ </button>
+
+ <button onclick="goPage('products',this)">
+  <span class="nav-icon">▦</span>
+  المخزون
+ </button>
+
+ <button onclick="goPage('sales',this)">
+  <span class="nav-icon">▤</span>
+  المبيعات
+ </button>
+
+ <button onclick="goPage('money',this)">
+  <span class="nav-icon">◈</span>
+  الدرج
+ </button>
+
+ <button onclick="goPage('reports',this)">
+  <span class="nav-icon">◌</span>
+  التقارير
+ </button>
+
+</nav>
+
+
+<button class="fab" onclick="openModal('saleModal')">+</button>
+
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div class="modal-bg" id="productModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">📦 المنتج</div>
+  <button class="close" onclick="closeModal('productModal')">×</button>
+ </div>
+
+ <input type="hidden" id="productId">
+
+ <label>اسم المنتج</label>
+ <input class="input" id="productName">
+
+ <label>سعر البيع</label>
+ <input class="input" id="productSale" type="number">
+
+ <label>التكلفة</label>
+ <input class="input" id="productCost" type="number">
+
+ <label>الكمية</label>
+ <input class="input" id="productQty" type="number">
+
+ <label>أقل سعر للبيع</label>
+ <input class="input" id="productMin" type="number">
+
+ <button class="modal-btn" onclick="saveProduct()">
+  حفظ
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= SALE MODAL ================= -->
+
+<div class="modal-bg" id="saleModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">🧾 بيع سريع</div>
+  <button class="close" onclick="closeModal('saleModal')">×</button>
+ </div>
+
+ <label>المنتج</label>
+ <select class="input" id="saleProduct"></select>
+
+ <label>الكمية</label>
+ <input class="input" id="saleQty" type="number" value="1">
+
+ <label>سعر الوحدة</label>
+ <input class="input" id="salePrice" type="number">
+
+ <label>الخصم</label>
+ <input class="input" id="saleDiscount" type="number" value="0">
+
+ <label>نوع الخصم</label>
+ <select class="input" id="discountType">
+  <option value="fixed">جنيه</option>
+  <option value="percent">نسبة %</option>
+ </select>
+
+ <label>طريقة الدفع</label>
+ <select class="input" id="salePayment">
+  <option value="cash">💵 كاش → درج المبيعات</option>
+  <option value="vodafone">📱 Vodafone Cash</option>
+  <option value="instapay">💳 InstaPay</option>
+ </select>
+
+ <button class="modal-btn" onclick="saveSale()">
+  تأكيد البيع
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= SERVICE MODAL ================= -->
+
+<div class="modal-bg" id="serviceModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">📱 عملية خدمة</div>
+  <button class="close" onclick="closeModal('serviceModal')">×</button>
+ </div>
+
+ <label>الخدمة</label>
+ <select class="input" id="serviceType">
+  <option value="vodafone">📱 Vodafone Cash</option>
+  <option value="instapay">💳 InstaPay</option>
+  <option value="machine">⚙️ رصيد الماكينة</option>
+ </select>
+
+ <label>نوع العملية</label>
+ <select class="input" id="serviceOperation">
+  <option value="add">إضافة إلى الرصيد</option>
+  <option value="sub">سحب من الرصيد</option>
+ </select>
+
+ <label>مبلغ العملية</label>
+ <input class="input" id="serviceAmount" type="number">
+
+ <label>العمولة</label>
+ <input class="input" id="serviceCommission" type="number" value="0">
+
+ <label>ملاحظة</label>
+ <input class="input" id="serviceNote">
+
+ <button class="modal-btn" onclick="saveService()">
+  حفظ العملية
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= MOVEMENT MODAL ================= -->
+
+<div class="modal-bg" id="movementModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">💵 حركة درج</div>
+  <button class="close" onclick="closeModal('movementModal')">×</button>
+ </div>
+
+ <label>الدرج</label>
+ <select class="input" id="movementAccount">
+  <option value="cash">💵 درج الكاش</option>
+  <option value="salesDrawer">🧾 درج المبيعات</option>
+ </select>
+
+ <label>نوع الحركة</label>
+ <select class="input" id="movementType">
+  <option value="add">➕ إضافة</option>
+  <option value="sub">➖ سحب</option>
+ </select>
+
+ <label>المبلغ</label>
+ <input class="input" id="movementAmount" type="number">
+
+ <label>البيان</label>
+ <input class="input" id="movementNote">
+
+ <button class="modal-btn" onclick="saveMovement()">
+  حفظ الحركة
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= REPAIR MODAL ================= -->
+
+<div class="modal-bg" id="repairModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">🔧 إصلاح</div>
+  <button class="close" onclick="closeModal('repairModal')">×</button>
+ </div>
+
+ <label>العميل / الجهاز</label>
+ <input class="input" id="repairName">
+
+ <label>سعر الإصلاح</label>
+ <input class="input" id="repairPrice" type="number">
+
+ <label>التكلفة</label>
+ <input class="input" id="repairCost" type="number">
+
+ <label>طريقة الدفع</label>
+ <select class="input" id="repairPayment">
+  <option value="cash">💵 كاش → درج المبيعات</option>
+  <option value="vodafone">📱 Vodafone Cash</option>
+  <option value="instapay">💳 InstaPay</option>
+ </select>
+
+ <button class="modal-btn" onclick="saveRepair()">
+  حفظ الإصلاح
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= EXPENSE MODAL ================= -->
+
+<div class="modal-bg" id="expenseModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">💸 مصروف</div>
+  <button class="close" onclick="closeModal('expenseModal')">×</button>
+ </div>
+
+ <label>المبلغ</label>
+ <input class="input" id="expenseAmount" type="number">
+
+ <label>من أي درج؟</label>
+ <select class="input" id="expenseAccount">
+  <option value="cash">💵 درج الكاش</option>
+  <option value="salesDrawer">🧾 درج المبيعات</option>
+ </select>
+
+ <label>البيان</label>
+ <input class="input" id="expenseNote">
+
+ <button class="modal-btn red" onclick="saveExpense()">
+  تسجيل المصروف
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= OPEN DAY MODAL ================= -->
+
+<div class="modal-bg" id="openDayModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">🌅 فتح يوم جديد</div>
+  <button class="close" onclick="closeModal('openDayModal')">×</button>
+ </div>
+
+ <div style="color:var(--muted);font-size:9px;margin-bottom:12px">
+  اكتب الرصيد الموجود فعليًا في كل حساب عند بداية اليوم.
+ </div>
+
+ <div class="open-grid">
+
+  <div class="open-account">
+   <span>🧾 درج المبيعات</span>
+   <input class="input" id="openSalesDrawer" type="number" value="0">
+  </div>
+
+  <div class="open-account">
+   <span>💵 درج الكاش</span>
+   <input class="input" id="openCash" type="number" value="0">
+  </div>
+
+  <div class="open-account">
+   <span>📱 Vodafone Cash</span>
+   <input class="input" id="openVodafone" type="number" value="0">
+  </div>
+
+  <div class="open-account">
+   <span>💳 InstaPay</span>
+   <input class="input" id="openInstapay" type="number" value="0">
+  </div>
+
+  <div class="open-account">
+   <span>⚙️ رصيد الماكينة</span>
+   <input class="input" id="openMachine" type="number" value="0">
+  </div>
+
+ </div>
+
+ <div class="open-total">
+  <small>إجمالي رصيد بداية اليوم</small>
+  <strong id="openTotal">0 ج.م</strong>
+ </div>
+
+ <button class="modal-btn" onclick="openDay()">
+  فتح اليوم وتسجيل الأرصدة
+ </button>
+
+</div>
+</div>
+
+
+<!-- ================= CLOSE DAY MODAL ================= -->
+
+<div class="modal-bg" id="closeDayModal">
+<div class="modal">
+
+ <div class="modal-head">
+  <div class="modal-title">🌙 إغلاق اليوم</div>
+  <button class="close" onclick="closeModal('closeDayModal')">×</button>
+ </div>
+
+ <div style="color:var(--muted);font-size:9px;margin-bottom:10px">
+  مراجعة أرصدة اليوم قبل الإغلاق.
+ </div>
+
+ <div id="closeTable"></div>
+
+ <button class="modal-btn red" onclick="closeDay()">
+  تأكيد إغلاق اليوم
+ </button>
+
+</div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+const KEY="perfect_manager_v3";
+const OLD_KEY="perfect_manager_clean_v2";
+const OLD_KEY2="perfect_manager_clean_v1";
+
+let db={
+ products:[],
+ sales:[],
+ movements:[],
+ expenses:[],
+ repairs:[],
+ purchases:[],
+
+ balances:{
+  salesDrawer:0,
+  cash:0,
+  vodafone:0,
+  instapay:0,
+  machine:0
+ },
+
+ commissions:{
+  vodafone:0,
+  instapay:0,
+  machine:0
+ },
+
+ day:{
+  open:false,
+  date:null,
+  openedAt:null,
+  start:{
+   salesDrawer:0,
+   cash:0,
+   vodafone:0,
+   instapay:0,
+   machine:0
+  }
+ },
+
+ days:[]
+};
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+function saveDB(){
+ localStorage.setItem(KEY,JSON.stringify(db));
+}
+
+function loadDB(){
+
+ let raw=
+  localStorage.getItem(KEY) ||
+  localStorage.getItem(OLD_KEY) ||
+  localStorage.getItem(OLD_KEY2);
+
+ if(raw){
+  try{
+   db=JSON.parse(raw);
+  }catch(e){}
+ }
+
+ normalize();
+ saveDB();
+}
+
+function normalize(){
+
+ db.products ||= [];
+ db.sales ||= [];
+ db.movements ||= [];
+ db.expenses ||= [];
+ db.repairs ||= [];
+ db.purchases ||= [];
+ db.days ||= [];
+
+ db.balances ||= {};
+ db.commissions ||= {};
+ db.day ||= {};
+ db.day.start ||= {};
+
+ [
+  "salesDrawer",
+  "cash",
+  "vodafone",
+  "instapay",
+  "machine"
+ ].forEach(k=>{
+  if(db.balances[k]==null) db.balances[k]=0;
+  if(db.day.start[k]==null) db.day.start[k]=0;
+ });
+
+ ["vodafone","instapay","machine"].forEach(k=>{
+  if(db.commissions[k]==null) db.commissions[k]=0;
+ });
+
+ if(db.day.open==null) db.day.open=false;
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function money(n){
+ return (Number(n)||0).toLocaleString("ar-EG")+" ج.م";
+}
+
+function num(id){
+ return Number(document.getElementById(id).value)||0;
+}
+
+function today(){
+ return new Date().toISOString().slice(0,10);
+}
+
+function now(){
+ return new Date().toLocaleString("ar-EG");
+}
+
+function esc(x){
+ return String(x??"")
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+}
+
+function toast(text){
+
+ const t=document.getElementById("toast");
+
+ t.textContent=text;
+ t.classList.add("show");
+
+ clearTimeout(window.toastTimer);
+
+ window.toastTimer=setTimeout(()=>{
+  t.classList.remove("show");
+ },2200);
+}
+
+function openModal(id){
+ document.getElementById(id).classList.add("show");
+
+ if(id==="saleModal"){
+  fillSaleProducts();
+ }
+
+ if(id==="openDayModal"){
+  calculateOpenTotal();
+ }
+}
+
+function closeModal(id){
+ document.getElementById(id).classList.remove("show");
+}
+
+function goPage(page,btn){
+
+ document.querySelectorAll(".page")
+  .forEach(x=>x.classList.remove("active"));
+
+ document.getElementById(page).classList.add("active");
+
+ document.querySelectorAll(".nav button")
+  .forEach(x=>x.classList.remove("active"));
+
+ if(btn) btn.classList.add("active");
+
+ renderAll();
+}
+
+
+/* =====================================================
+   TOTALS
+===================================================== */
+
+function drawerTotal(){
+ return db.balances.salesDrawer + db.balances.cash;
+}
+
+function allAccountsTotal(){
+ return drawerTotal()
+  +db.balances.vodafone
+  +db.balances.instapay
+  +db.balances.machine;
+}
+
+
+/* =====================================================
+   PRODUCT
+===================================================== */
+
+function newProduct(){
+
+ document.getElementById("productId").value="";
+ document.getElementById("productName").value="";
+ document.getElementById("productSale").value="";
+ document.getElementById("productCost").value="";
+ document.getElementById("productQty").value="";
+ document.getElementById("productMin").value="";
+
+ openModal("productModal");
+}
+
+function saveProduct(){
+
+ const id=document.getElementById("productId").value;
+ const name=document.getElementById("productName").value.trim();
+
+ const sale=num("productSale");
+ const cost=num("productCost");
+ const qty=num("productQty");
+ const min=num("productMin");
+
+ if(!name){
+  toast("اكتب اسم المنتج");
+  return;
+ }
+
+ if(sale<0||cost<0||qty<0){
+  toast("راجع الأرقام");
+  return;
+ }
+
+ if(id){
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(p){
+   p.name=name;
+   p.salePrice=sale;
+   p.cost=cost;
+   p.qty=qty;
+   p.minPrice=min;
+  }
+
+  toast("تم تعديل المنتج ✓");
+
+ }else{
+
+  db.products.unshift({
+   id:Date.now().toString(),
+   name,
+   salePrice:sale,
+   cost,
+   qty,
+   minPrice:min,
+   createdAt:now()
+  });
+
+  toast("تمت إضافة المنتج ✓");
+ }
+
+ saveDB();
+ closeModal("productModal");
+ renderAll();
+}
+
+function editProduct(id){
+
+ const p=db.products.find(x=>x.id===id);
+
+ if(!p)return;
+
+ document.getElementById("productId").value=p.id;
+ document.getElementById("productName").value=p.name;
+ document.getElementById("productSale").value=p.salePrice;
+ document.getElementById("productCost").value=p.cost;
+ document.getElementById("productQty").value=p.qty;
+ document.getElementById("productMin").value=p.minPrice||0;
+
+ openModal("productModal");
+}
+
+function changeQty(id,amount){
+
+ const p=db.products.find(x=>x.id===id);
+
+ if(!p)return;
+
+ p.qty=Math.max(0,(Number(p.qty)||0)+amount);
+
+ saveDB();
+ renderAll();
+}
+
+function deleteProduct(id){
+
+ if(!confirm("هل تريد حذف المنتج؟"))return;
+
+ db.products=db.products.filter(x=>x.id!==id);
+
+ saveDB();
+ renderAll();
+
+ toast("تم حذف المنتج");
+}
+
+function renderProducts(){
+
+ const list=document.getElementById("productsList");
+ const q=(document.getElementById("productSearch")?.value||"")
+  .trim()
+  .toLowerCase();
+
+ const products=db.products.filter(p=>
+  String(p.name).toLowerCase().includes(q)
+ );
+
+ if(!products.length){
+
+  list.innerHTML=
+   `<div class="empty">📦<br><br>لا توجد منتجات</div>`;
+
+  return;
+ }
+
+ list.innerHTML=products.map(p=>{
+
+  const profit=(Number(p.salePrice)||0)-(Number(p.cost)||0);
+
+  return `
+  <div class="product">
+
+   <div class="product-main">
+
+    <div class="product-icon">📦</div>
+
+    <div class="product-info">
+     <div class="product-name">${esc(p.name)}</div>
+
+     <div class="product-meta">
+      تكلفة ${money(p.cost)}
+      • ربح القطعة ${money(profit)}
+     </div>
+    </div>
+
+    <div class="product-price">
+     ${money(p.salePrice)}
+     <small>سعر البيع</small>
+    </div>
+
+   </div>
+
+   <div class="product-bottom">
+
+    <div class="qty">
+     <button onclick="changeQty('${p.id}',-1)">−</button>
+     <b>${p.qty}</b>
+     <button onclick="changeQty('${p.id}',1)">+</button>
+    </div>
+
+    <div class="mini-actions">
+
+     <button class="mini"
+      onclick="editProduct('${p.id}')">
+      تعديل
+     </button>
+
+     <button class="mini"
+      onclick="deleteProduct('${p.id}')">
+      حذف
+     </button>
+
+    </div>
+
+   </div>
+
+  </div>
+  `;
+
+ }).join("");
+}
+
+
+/* =====================================================
+   SALES
+===================================================== */
+
+function fillSaleProducts(){
+
+ const select=document.getElementById("saleProduct");
+
+ select.innerHTML=db.products.map(p=>`
+  <option value="${p.id}">
+   ${esc(p.name)} — المتاح ${p.qty}
+  </option>
+ `).join("");
+
+ updateSalePrice();
+}
+
+function updateSalePrice(){
+
+ const p=db.products.find(x=>
+  x.id===document.getElementById("saleProduct").value
+ );
+
+ if(p){
+  document.getElementById("salePrice").value=p.salePrice;
+ }
+}
+
+document.getElementById("saleProduct")
+ .addEventListener("change",updateSalePrice);
+
+function saveSale(){
+
+ const p=db.products.find(x=>
+  x.id===document.getElementById("saleProduct").value
+ );
+
+ if(!p){
+  toast("لا يوجد منتج");
+  return;
+ }
+
+ const qty=num("saleQty");
+ const price=num("salePrice");
+ const discount=num("saleDiscount");
+
+ if(qty<=0||price<0){
+  toast("راجع بيانات البيع");
+  return;
+ }
+
+ if(qty>p.qty){
+  toast("الكمية غير متوفرة");
+  return;
+ }
+
+ const gross=qty*price;
+
+ let disc=discount;
+
+ if(document.getElementById("discountType").value==="percent"){
+  disc=gross*(discount/100);
+ }
+
+ disc=Math.min(Math.max(disc,0),gross);
+
+ const net=gross-disc;
+ const profit=net-(qty*p.cost);
+
+ const payment=
+  document.getElementById("salePayment").value;
+
+ /*
+  الكاش من المبيعات يدخل درج المبيعات.
+  Vodafone و InstaPay يدخلوا حساب الخدمة.
+ */
+
+ if(payment==="cash"){
+  db.balances.salesDrawer+=net;
+ }
+
+ if(payment==="vodafone"){
+  db.balances.vodafone+=net;
+ }
+
+ if(payment==="instapay"){
+  db.balances.instapay+=net;
+ }
+
+ p.qty-=qty;
+
+ db.sales.unshift({
+  id:Date.now().toString(),
+  productId:p.id,
+  productName:p.name,
+  qty,
+  price,
+  gross,
+  discount:disc,
+  net,
+  profit,
+  payment,
+  date:today(),
+  createdAt:now()
+ });
+
+ saveDB();
+
+ closeModal("saleModal");
+
+ renderAll();
+
+ toast("تم تسجيل البيع ✓");
+}
+
+function paymentName(k){
+
+ return {
+  cash:"💵 كاش",
+  vodafone:"📱 Vodafone Cash",
+  instapay:"💳 InstaPay"
+ }[k]||k;
+}
+
+function renderSales(){
+
+ const total=db.sales.reduce(
+  (s,x)=>s+(Number(x.net)||0),0
+ );
+
+ const profit=db.sales.reduce(
+  (s,x)=>s+(Number(x.profit)||0),0
+ );
+
+ document.getElementById("salesTotal").textContent=money(total);
+ document.getElementById("salesProfit").textContent=money(profit);
+
+ const list=document.getElementById("salesList");
+
+ if(!db.sales.length){
+  list.innerHTML=`<div class="empty">لا توجد مبيعات</div>`;
+  return;
+ }
+
+ list.innerHTML=db.sales.slice(0,60).map(s=>`
+
+ <div class="item">
+
+  <div class="row">
+
+   <div>
+    <div class="item-title">${esc(s.productName)}</div>
+
+    <div class="item-sub">
+     ${s.qty} × ${money(s.price)}
+     • ${s.createdAt}
+    </div>
+   </div>
+
+   <div class="item-value green">
+    ${money(s.net)}
+   </div>
+
+  </div>
+
+  <div class="item-sub">
+   ${paymentName(s.payment)}
+   • ربح ${money(s.profit)}
+  </div>
+
+ </div>
+
+ `).join("");
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+function saveService(){
+
+ const type=document.getElementById("serviceType").value;
+ const operation=document.getElementById("serviceOperation").value;
+
+ const amount=num("serviceAmount");
+ const commission=num("serviceCommission");
+
+ const note=document.getElementById("serviceNote").value.trim();
+
+ if(amount<=0){
+  toast("اكتب مبلغ العملية");
+  return;
+ }
+
+ if(commission<0){
+  toast("العمولة غير صحيحة");
+  return;
+ }
+
+ if(operation==="add"){
+
+  db.balances[type]+=amount;
+
+ }else{
+
+  if(db.balances[type]<amount){
+   toast("الرصيد غير كافي");
+   return;
+  }
+
+  db.balances[type]-=amount;
+ }
+
+ /*
+  العمولة دخل للمحل.
+  تدخل درج الكاش.
+ */
+
+ if(commission>0){
+  db.commissions[type]+=commission;
+  db.balances.cash+=commission;
+ }
+
+ db.movements.unshift({
+  id:Date.now().toString(),
+  type:"service",
+  service:type,
+  operation,
+  amount,
+  commission,
+  note,
+  date:today(),
+  createdAt:now()
+ });
+
+ saveDB();
+
+ closeModal("serviceModal");
+ renderAll();
+
+ toast("تم تسجيل الخدمة ✓");
+}
+
+
+/* =====================================================
+   MOVEMENTS
+===================================================== */
+
+function saveMovement(){
+
+ const account=document.getElementById("movementAccount").value;
+ const type=document.getElementById("movementType").value;
+
+ const amount=num("movementAmount");
+ const note=document.getElementById("movementNote").value.trim();
+
+ if(amount<=0){
+  toast("اكتب المبلغ");
+  return;
+ }
+
+ if(type==="add"){
+
+  db.balances[account]+=amount;
+
+ }else{
+
+  if(db.balances[account]<amount){
+   toast("الرصيد غير كافي");
+   return;
+  }
+
+  db.balances[account]-=amount;
+ }
+
+ db.movements.unshift({
+  id:Date.now().toString(),
+  type:"movement",
+  account,
+  operation:type,
+  amount,
+  note,
+  date:today(),
+  createdAt:now()
+ });
+
+ saveDB();
+
+ closeModal("movementModal");
+ renderAll();
+
+ toast("تم حفظ الحركة ✓");
+}
+
+
+/* =====================================================
+   REPAIR
+===================================================== */
+
+function saveRepair(){
+
+ const name=document.getElementById("repairName").value.trim();
+
+ const price=num("repairPrice");
+ const cost=num("repairCost");
+
+ const payment=document.getElementById("repairPayment").value;
+
+ if(!name||price<=0){
+  toast("أكمل بيانات الإصلاح");
+  return;
+ }
+
+ if(payment==="cash"){
+  db.balances.salesDrawer+=price;
+ }
+
+ if(payment==="vodafone"){
+  db.balances.vodafone+=price;
+ }
+
+ if(payment==="instapay"){
+  db.balances.instapay+=price;
+ }
+
+ db.repairs.unshift({
+  id:Date.now().toString(),
+  name,
+  price,
+  cost,
+  profit:price-cost,
+  payment,
+  date:today(),
+  createdAt:now()
+ });
+
+ saveDB();
+
+ closeModal("repairModal");
+ renderAll();
+
+ toast("تم حفظ الإصلاح ✓");
+}
+
+
+/* =====================================================
+   EXPENSE
+===================================================== */
+
+function saveExpense(){
+
+ const amount=num("expenseAmount");
+ const account=document.getElementById("expenseAccount").value;
+
+ const note=document.getElementById("expenseNote").value.trim();
+
+ if(amount<=0){
+  toast("اكتب المبلغ");
+  return;
+ }
+
+ if(db.balances[account]<amount){
+  toast("الرصيد غير كافي");
+  return;
+ }
+
+ db.balances[account]-=amount;
+
+ db.expenses.unshift({
+  id:Date.now().toString(),
+  amount,
+  account,
+  note,
+  date:today(),
+  createdAt:now()
+ });
+
+ saveDB();
+
+ closeModal("expenseModal");
+ renderAll();
+
+ toast("تم تسجيل المصروف ✓");
+}
+
+
+/* =====================================================
+   DAY OPENING
+===================================================== */
+
+function openDayModalData(){
+
+ document.getElementById("openSalesDrawer").value=
+  db.balances.salesDrawer;
+
+ document.getElementById("openCash").value=
+  db.balances.cash;
+
+ document.getElementById("openVodafone").value=
+  db.balances.vodafone;
+
+ document.getElementById("openInstapay").value=
+  db.balances.instapay;
+
+ document.getElementById("openMachine").value=
+  db.balances.machine;
+
+ calculateOpenTotal();
+}
+
+function calculateOpenTotal(){
+
+ const total=
+  num("openSalesDrawer")+
+  num("openCash")+
+  num("openVodafone")+
+  num("openInstapay")+
+  num("openMachine");
+
+ document.getElementById("openTotal").textContent=
+  money(total);
+}
+
+[
+ "openSalesDrawer",
+ "openCash",
+ "openVodafone",
+ "openInstapay",
+ "openMachine"
+].forEach(id=>{
+ document.getElementById(id)
+ .addEventListener("input",calculateOpenTotal);
+});
+
+function openDay(){
+
+ if(db.day.open){
+  toast("اليوم مفتوح بالفعل");
+  return;
+ }
+
+ const start={
+  salesDrawer:num("openSalesDrawer"),
+  cash:num("openCash"),
+  vodafone:num("openVodafone"),
+  instapay:num("openInstapay"),
+  machine:num("openMachine")
+ };
+
+ /*
+  مهم:
+  أرصدة البداية هي الرصيد الفعلي الذي أدخله المستخدم.
+ */
+
+ db.balances.salesDrawer=start.salesDrawer;
+ db.balances.cash=start.cash;
+ db.balances.vodafone=start.vodafone;
+ db.balances.instapay=start.instapay;
+ db.balances.machine=start.machine;
+
+ db.day={
+  open:true,
+  date:today(),
+  openedAt:now(),
+  start:{...start}
+ };
+
+ saveDB();
+
+ closeModal("openDayModal");
+ renderAll();
+
+ toast("تم فتح اليوم وتسجيل الأرصدة ✓");
+}
+
+
+/* =====================================================
+   DAY CLOSE
+===================================================== */
+
+function accountLabel(k){
+
+ return {
+  salesDrawer:"🧾 درج المبيعات",
+  cash:"💵 درج الكاش",
+  vodafone:"📱 Vodafone Cash",
+  instapay:"💳 InstaPay",
+  machine:"⚙️ رصيد الماكينة"
+ }[k]||k;
+}
+
+function dayCurrent(k){
+ return Number(db.balances[k]||0);
+}
+
+function dayDifference(k){
+
+ return dayCurrent(k)-Number(db.day.start[k]||0);
+}
+
+function buildCloseTable(){
+
+ const keys=[
+  "salesDrawer",
+  "cash",
+  "vodafone",
+  "instapay",
+  "machine"
+ ];
+
+ let html=`
+ <div class="close-row close-head">
+  <div>الحساب</div>
+  <div>البداية</div>
+  <div>الحالي</div>
+  <div>الفرق</div>
+ </div>
+ `;
+
+ keys.forEach(k=>{
+
+  const start=Number(db.day.start[k]||0);
+  const current=dayCurrent(k);
+  const diff=current-start;
+
+  html+=`
+  <div class="close-row">
+
+   <strong>${accountLabel(k)}</strong>
+
+   <div>${money(start)}</div>
+
+   <div>${money(current)}</div>
+
+   <div class="${diff>=0?"diff-positive":"diff-negative"}">
+    ${diff>=0?"+":""}${money(diff)}
+   </div>
+
+  </div>
+  `;
+ });
+
+ const startTotal=Object.values(db.day.start)
+  .reduce((s,x)=>s+(Number(x)||0),0);
+
+ const currentTotal=allAccountsTotal();
+ const totalDiff=currentTotal-startTotal;
+
+ html+=`
+ <div class="open-total" style="margin-top:12px">
+
+  <small>إجمالي بداية اليوم</small>
+  <strong>${money(startTotal)}</strong>
+
+  <small style="display:block;margin-top:10px">
+   إجمالي الرصيد الحالي
+  </small>
+
+  <strong>${money(currentTotal)}</strong>
+
+  <small style="display:block;margin-top:10px">
+   إجمالي الفرق
+  </small>
+
+  <strong class="${totalDiff>=0?"green":"red"}">
+   ${totalDiff>=0?"+":""}${money(totalDiff)}
+  </strong>
+
+ </div>
+ `;
+
+ document.getElementById("closeTable").innerHTML=html;
+}
+
+function closeDayModalData(){
+
+ buildCloseTable();
+ openModal("closeDayModal");
+}
+
+function closeDay(){
+
+ if(!db.day.open){
+  toast("اليوم مغلق بالفعل");
+  return;
+ }
+
+ const end={
+  salesDrawer:db.balances.salesDrawer,
+  cash:db.balances.cash,
+  vodafone:db.balances.vodafone,
+  instapay:db.balances.instapay,
+  machine:db.balances.machine
+ };
+
+ db.days.unshift({
+  id:Date.now().toString(),
+  date:db.day.date,
+  openedAt:db.day.openedAt,
+  closedAt:now(),
+  start:{...db.day.start},
+  end:{...end}
+ });
+
+ db.day.open=false;
+ db.day.date=null;
+ db.day.openedAt=null;
+
+ saveDB();
+
+ closeModal("closeDayModal");
+ renderAll();
+
+ toast("تم إغلاق اليوم وحفظ التقرير ✓");
+}
+
+function handleDayButton(){
+
+ if(db.day.open){
+
+  closeDayModalData();
+
+ }else{
+
+  openDayModalData();
+  openModal("openDayModal");
+
+ }
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function todaySales(){
+
+ return db.sales
+ .filter(x=>x.date===today())
+ .reduce((s,x)=>s+(Number(x.net)||0),0);
+}
+
+function todayProfit(){
+
+ const sales=db.sales
+ .filter(x=>x.date===today())
+ .reduce((s,x)=>s+(Number(x.profit)||0),0);
+
+ const repairs=db.repairs
+ .filter(x=>x.date===today())
+ .reduce((s,x)=>s+(Number(x.profit)||0),0);
+
+ return sales+repairs;
+}
+
+function todayExpenses(){
+
+ return db.expenses
+ .filter(x=>x.date===today())
+ .reduce((s,x)=>s+(Number(x.amount)||0),0);
+}
+
+function todayCommission(){
+
+ return db.movements
+ .filter(x=>x.date===today() && x.type==="service")
+ .reduce((s,x)=>s+(Number(x.commission)||0),0);
+}
+
+function renderHome(){
+
+ document.getElementById("heroTotal").textContent=
+  money(drawerTotal());
+
+ document.getElementById("homeSales").textContent=
+  money(todaySales());
+
+ document.getElementById("homeProfit").textContent=
+  money(todayProfit());
+
+ document.getElementById("homeExpenses").textContent=
+  money(todayExpenses());
+
+ document.getElementById("homeCommission").textContent=
+  money(todayCommission());
+
+ document.getElementById("homeVodafone").textContent=
+  money(db.balances.vodafone);
+
+ document.getElementById("homeInstapay").textContent=
+  money(db.balances.instapay);
+
+ document.getElementById("homeMachine").textContent=
+  money(db.balances.machine);
+
+ document.getElementById("homeVodafoneFee").textContent=
+  money(db.commissions.vodafone);
+
+ document.getElementById("homeInstapayFee").textContent=
+  money(db.commissions.instapay);
+
+ document.getElementById("homeMachineFee").textContent=
+  money(db.commissions.machine);
+
+ const badge=document.getElementById("dayBadge");
+
+ badge.textContent=db.day.open?"اليوم مفتوح":"اليوم مغلق";
+
+ badge.classList.toggle("open",db.day.open);
+
+ document.getElementById("dayDate").textContent=
+  db.day.open?db.day.date:"—";
+
+ document.getElementById("dayOpenedAt").textContent=
+  db.day.open?db.day.openedAt:"—";
+
+ const startTotal=db.day.open
+  ?Object.values(db.day.start)
+   .reduce((s,x)=>s+(Number(x)||0),0)
+  :0;
+
+ document.getElementById("dayStartTotal").textContent=
+  money(startTotal);
+
+ document.getElementById("dayCurrentTotal").textContent=
+  money(allAccountsTotal());
+
+ const btn=document.getElementById("dayButton");
+
+ btn.textContent=db.day.open
+  ?"إغلاق اليوم ومراجعة الحسابات"
+  :"فتح اليوم وتسجيل أرصدة البداية";
+
+ btn.classList.toggle("close-day",db.day.open);
+}
+
+
+/* =====================================================
+   MONEY
+===================================================== */
+
+function renderMoney(){
+
+ document.getElementById("moneyTotal").textContent=
+  money(drawerTotal());
+
+ document.getElementById("moneySalesDrawer").textContent=
+  money(db.balances.salesDrawer);
+
+ document.getElementById("moneyCash").textContent=
+  money(db.balances.cash);
+
+ document.getElementById("moneyVodafone").textContent=
+  money(db.balances.vodafone);
+
+ document.getElementById("moneyInstapay").textContent=
+  money(db.balances.instapay);
+
+ document.getElementById("moneyMachine").textContent=
+  money(db.balances.machine);
+
+ document.getElementById("moneyVodafoneFee").textContent=
+  money(db.commissions.vodafone);
+
+ document.getElementById("moneyInstapayFee").textContent=
+  money(db.commissions.instapay);
+
+ document.getElementById("moneyMachineFee").textContent=
+  money(db.commissions.machine);
+
+ const list=document.getElementById("movementsList");
+
+ if(!db.movements.length){
+
+  list.innerHTML=
+   `<div class="empty">لا توجد عمليات حتى الآن</div>`;
+
+  return;
+ }
+
+ list.innerHTML=db.movements.slice(0,50).map(m=>{
+
+  if(m.type==="service"){
+
+   return `
+   <div class="item">
+
+    <div class="row">
+
+     <div>
+      <div class="item-title">
+       ${serviceName(m.service)}
+      </div>
+
+      <div class="item-sub">
+       ${m.operation==="add"?"إضافة":"سحب"}
+       • ${m.createdAt}
+      </div>
+     </div>
+
+     <div class="item-value">
+      ${money(m.amount)}
+     </div>
+
+    </div>
+
+    <div class="item-sub">
+     عمولة
+     <span class="green">${money(m.commission)}</span>
+     ${m.note?" • "+esc(m.note):""}
+    </div>
+
+   </div>
+   `;
+  }
+
+  return `
+  <div class="item">
+
+   <div class="row">
+
+    <div>
+     <div class="item-title">
+      ${accountName(m.account)}
+     </div>
+
+     <div class="item-sub">
+      ${m.operation==="add"?"إضافة":"سحب"}
+      • ${m.createdAt}
+     </div>
+    </div>
+
+    <div class="item-value">
+     ${money(m.amount)}
+    </div>
+
+   </div>
+
+   <div class="item-sub">
+    ${esc(m.note||"بدون بيان")}
+   </div>
+
+  </div>
+  `;
+
+ }).join("");
+}
+
+function serviceName(k){
+
+ return {
+  vodafone:"📱 Vodafone Cash",
+  instapay:"💳 InstaPay",
+  machine:"⚙️ رصيد الماكينة"
+ }[k]||k;
+}
+
+function accountName(k){
+
+ return {
+  cash:"💵 درج الكاش",
+  salesDrawer:"🧾 درج المبيعات"
+ }[k]||k;
+}
+
+
+/* =====================================================
+   REPORTS
+===================================================== */
+
+function renderReports(){
+
+ document.getElementById("reportSales").textContent=
+  money(db.sales.reduce((s,x)=>s+(Number(x.net)||0),0));
+
+ document.getElementById("reportProductProfit").textContent=
+  money(db.sales.reduce((s,x)=>s+(Number(x.profit)||0),0));
+
+ document.getElementById("reportRepairProfit").textContent=
+  money(db.repairs.reduce((s,x)=>s+(Number(x.profit)||0),0));
+
+ document.getElementById("reportCommission").textContent=
+  money(Object.values(db.commissions)
+   .reduce((s,x)=>s+(Number(x)||0),0));
+
+ document.getElementById("reportExpenses").textContent=
+  money(db.expenses.reduce((s,x)=>s+(Number(x.amount)||0),0));
+
+ const stock=db.products.reduce(
+  (s,p)=>
+   s+(Number(p.qty)||0)*(Number(p.cost)||0),
+  0
+ );
+
+ document.getElementById("reportStock").textContent=
+  money(stock);
+
+ document.getElementById("reportDayStatus").textContent=
+  db.day.open?"🟢 اليوم مفتوح":"🔴 اليوم مغلق";
+}
+
+
+/* =====================================================
+   RENDER ALL
+===================================================== */
+
+function renderAll(){
+
+ document.getElementById("headerDate").textContent=
+  new Date().toLocaleDateString("ar-EG",{
+   day:"numeric",
+   month:"short"
+  });
+
+ renderHome();
+ renderProducts();
+ renderSales();
+ renderMoney();
+ renderReports();
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadDB();
+renderAll();
+
+</script>
+
+</body>
+</html>
