@@ -1,0 +1,3368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07090d">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PERFECT MANAGER</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#07090d;
+  --card:#10141b;
+  --card2:#151a22;
+  --border:#242b36;
+  --text:#f5f7fa;
+  --muted:#8e98a8;
+  --blue:#4da3ff;
+  --green:#25d98a;
+  --red:#ff5d6c;
+  --orange:#ffad42;
+  --purple:#9b7cff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+  padding:14px;
+}
+
+/* HEADER */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ffffff,#7e8cff);
+  color:#080a0f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:23px;
+  box-shadow:0 0 25px rgba(126,140,255,.25);
+}
+
+.brand h1{
+  font-size:17px;
+  letter-spacing:1px;
+}
+
+.brand span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.header-actions{
+  display:flex;
+  gap:7px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:white;
+  font-size:18px;
+}
+
+.day-pill{
+  padding:8px 10px;
+  border-radius:12px;
+  background:rgba(37,217,138,.08);
+  border:1px solid rgba(37,217,138,.2);
+  color:var(--green);
+  font-size:11px;
+  font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+  background:
+    radial-gradient(circle at 80% 10%,rgba(77,163,255,.2),transparent 35%),
+    radial-gradient(circle at 20% 90%,rgba(155,124,255,.12),transparent 35%),
+    var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:22px;
+  margin-bottom:14px;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.hero-total{
+  font-size:35px;
+  font-weight:900;
+  margin:8px 0;
+  direction:ltr;
+  text-align:right;
+}
+
+.hero-sub{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.hero-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+
+.hero-mini{
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:15px;
+  padding:12px;
+}
+
+.hero-mini span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.hero-mini strong{
+  display:block;
+  margin-top:6px;
+  font-size:15px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:15px;
+}
+
+.card.full{
+  grid-column:1/-1;
+}
+
+.card-title{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:9px;
+}
+
+.card-value{
+  font-size:19px;
+  font-weight:800;
+}
+
+.green{color:var(--green)!important}
+.red{color:var(--red)!important}
+.blue{color:var(--blue)!important}
+.orange{color:var(--orange)!important}
+.purple{color:var(--purple)!important}
+
+.service-card{
+  margin-bottom:14px;
+}
+
+.service-total{
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.service-breakdown{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.service-item{
+  background:rgba(255,255,255,.035);
+  border-radius:14px;
+  padding:11px 7px;
+  text-align:center;
+}
+
+.service-item span{
+  color:var(--muted);
+  font-size:10px;
+  display:block;
+}
+
+.service-item strong{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+}
+
+/* QUICK */
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:20px 2px 10px;
+}
+
+.section-title h2{
+  font-size:14px;
+}
+
+.section-title span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:15px;
+}
+
+.quick-btn{
+  min-height:78px;
+  border-radius:17px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-size:11px;
+}
+
+.quick-btn b{
+  font-size:22px;
+}
+
+.quick-btn:active{
+  transform:scale(.97);
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border-radius:15px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:white;
+  outline:none;
+  margin-bottom:10px;
+}
+
+.search:focus{
+  border-color:var(--blue);
+}
+
+/* PRODUCTS */
+
+.product-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.product{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:14px;
+}
+
+.product-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.product-name{
+  font-weight:800;
+  font-size:14px;
+}
+
+.product-price{
+  color:var(--green);
+  font-weight:900;
+}
+
+.product-meta{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:9px;
+}
+
+.product-profit{
+  color:var(--green);
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 7px;
+  border-radius:8px;
+  font-size:9px;
+  margin-top:7px;
+  background:rgba(77,163,255,.1);
+  color:var(--blue);
+}
+
+.badge.low{
+  background:rgba(255,93,108,.1);
+  color:var(--red);
+}
+
+/* LISTS */
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.list-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:13px;
+}
+
+.list-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.list-title{
+  font-size:13px;
+  font-weight:bold;
+}
+
+.list-date{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.list-details{
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+/* FORMS */
+
+.form-group{
+  margin-bottom:12px;
+}
+
+.form-label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:6px;
+}
+
+.input,
+select,
+textarea{
+  width:100%;
+  background:#0b0e13;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:13px;
+  outline:none;
+}
+
+.input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--blue);
+}
+
+textarea{
+  min-height:80px;
+  resize:none;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.primary{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#5a8dff,#8068ff);
+  color:white;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.secondary{
+  width:100%;
+  padding:13px;
+  border-radius:14px;
+  background:var(--card2);
+  color:white;
+  border:1px solid var(--border);
+  margin-top:7px;
+}
+
+.danger{
+  background:rgba(255,93,108,.1);
+  color:var(--red);
+  border:1px solid rgba(255,93,108,.2);
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:1000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:650px;
+  max-height:92vh;
+  overflow:auto;
+  background:#0d1117;
+  border:1px solid var(--border);
+  border-radius:25px 25px 0 0;
+  padding:18px;
+  animation:up .2s ease;
+}
+
+@keyframes up{
+  from{transform:translateY(100%)}
+  to{transform:translateY(0)}
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.modal-head h3{
+  font-size:16px;
+}
+
+.close{
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  background:var(--card);
+  color:white;
+}
+
+/* RECON */
+
+.recon{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.recon-row{
+  display:flex;
+  justify-content:space-between;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:12px;
+}
+
+.recon-row span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.recon-row strong{
+  font-size:12px;
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px dashed var(--border);
+  border-radius:18px;
+  font-size:12px;
+}
+
+/* BOTTOM */
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:74px;
+  background:rgba(8,10,14,.94);
+  backdrop-filter:blur(15px);
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:center;
+  z-index:900;
+}
+
+.bottom-inner{
+  width:100%;
+  max-width:650px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.nav-btn{
+  background:none;
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  font-size:9px;
+}
+
+.nav-btn b{
+  font-size:19px;
+}
+
+.nav-btn.active{
+  color:white;
+}
+
+.nav-btn.active b{
+  color:var(--blue);
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%) translateY(20px);
+  background:#171c24;
+  border:1px solid var(--border);
+  color:white;
+  padding:12px 18px;
+  border-radius:13px;
+  font-size:11px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:2000;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.warning{
+  background:rgba(255,173,66,.08);
+  border:1px solid rgba(255,173,66,.2);
+  color:var(--orange);
+  padding:10px;
+  border-radius:12px;
+  font-size:10px;
+  margin-bottom:10px;
+}
+
+.success-box{
+  background:rgba(37,217,138,.08);
+  border:1px solid rgba(37,217,138,.2);
+  color:var(--green);
+  padding:12px;
+  border-radius:13px;
+  font-size:11px;
+  margin-bottom:10px;
+}
+
+.stat-big{
+  font-size:25px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.history-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:14px;
+  margin-bottom:9px;
+}
+
+.history-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.history-header strong{
+  font-size:13px;
+}
+
+.history-header span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.history-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:10px;
+}
+
+.history-mini{
+  background:rgba(255,255,255,.03);
+  border-radius:11px;
+  padding:9px;
+}
+
+.history-mini span{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.history-mini strong{
+  display:block;
+  font-size:11px;
+  margin-top:4px;
+}
+
+@media(max-width:360px){
+  .quick{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .service-breakdown{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <div class="logo">P</div>
+      <div>
+        <h1>PERFECT MANAGER</h1>
+        <span>إدارة محل الموبايلات</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="day-pill" id="dayStatus">اليوم مغلق</div>
+      <button class="icon-btn" onclick="openDayModal()">◷</button>
+    </div>
+  </header>
+
+
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+
+    <div class="hero">
+      <div class="hero-label">إجمالي رصيد المحل</div>
+      <div class="hero-total" id="heroTotal">0.00 ج</div>
+      <div class="hero-sub">درج المبيعات + رصيد الخدمات</div>
+
+      <div class="hero-row">
+        <div class="hero-mini">
+          <span>درج المبيعات</span>
+          <strong id="heroSalesDrawer">0.00 ج</strong>
+        </div>
+
+        <div class="hero-mini">
+          <span>رصيد الخدمات</span>
+          <strong id="heroServices">0.00 ج</strong>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-title">مبيعات اليوم</div>
+        <div class="card-value blue" id="todaySales">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">ربح المنتجات</div>
+        <div class="card-value green" id="productProfit">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">إيراد الصيانة</div>
+        <div class="card-value purple" id="repairRevenue">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الربح التشغيلي</div>
+        <div class="card-value green" id="operatingProfit">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الخصومات</div>
+        <div class="card-value orange" id="discounts">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">قيمة المخزون</div>
+        <div class="card-value" id="stockValue">0.00 ج</div>
+      </div>
+
+    </div>
+
+
+    <div class="card service-card">
+      <div class="card-title">رصيد الخدمات</div>
+      <div class="service-total" id="serviceTotal">0.00 ج</div>
+
+      <div class="service-breakdown">
+
+        <div class="service-item">
+          <span>كاش</span>
+          <strong id="cashBalance">0.00 ج</strong>
+        </div>
+
+        <div class="service-item">
+          <span>Vodafone</span>
+          <strong id="vodafoneBalance">0.00 ج</strong>
+        </div>
+
+        <div class="service-item">
+          <span>InstaPay</span>
+          <strong id="instapayBalance">0.00 ج</strong>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="section-title">
+      <h2>إجراءات سريعة</h2>
+      <span>إدارة المحل</span>
+    </div>
+
+    <div class="quick">
+
+      <button class="quick-btn" onclick="openSaleModal()">
+        <b>＋</b>
+        بيع منتج
+      </button>
+
+      <button class="quick-btn" onclick="openProductModal()">
+        <b>▣</b>
+        منتج جديد
+      </button>
+
+      <button class="quick-btn" onclick="openMovementModal()">
+        <b>↕</b>
+        حركة مالية
+      </button>
+
+      <button class="quick-btn" onclick="openExpenseModal()">
+        <b>−</b>
+        مصروف
+      </button>
+
+      <button class="quick-btn" onclick="openRepairModal()">
+        <b>🔧</b>
+        صيانة
+      </button>
+
+      <button class="quick-btn" onclick="openPurchaseModal()">
+        <b>🛒</b>
+        شراء بضاعة
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section class="page" id="page-products">
+
+    <div class="section-title">
+      <h2>المخزون</h2>
+      <span id="productCount">0 منتج</span>
+    </div>
+
+    <input
+      class="search"
+      id="productSearch"
+      placeholder="ابحث عن منتج..."
+      oninput="renderProducts()"
+    >
+
+    <div id="productsList" class="product-list"></div>
+
+  </section>
+
+
+  <!-- SALES -->
+  <section class="page" id="page-sales">
+
+    <div class="section-title">
+      <h2>المبيعات</h2>
+      <span>سجل المبيعات</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-title">إجمالي المبيعات</div>
+        <div class="stat-big blue" id="salesGross">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الخصومات</div>
+        <div class="stat-big orange" id="salesDiscounts">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">صافي المبيعات</div>
+        <div class="stat-big green" id="salesNet">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الربح</div>
+        <div class="stat-big green" id="salesProfit">0.00 ج</div>
+      </div>
+
+    </div>
+
+    <div id="salesList" class="list"></div>
+
+  </section>
+
+
+  <!-- MONEY -->
+  <section class="page" id="page-money">
+
+    <div class="section-title">
+      <h2>الأموال</h2>
+      <span>الأرصدة والحركات</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-title">الكاش</div>
+        <div class="stat-big" id="moneyCash">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Vodafone Cash</div>
+        <div class="stat-big" id="moneyVodafone">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">InstaPay</div>
+        <div class="stat-big" id="moneyInstapay">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">درج المبيعات</div>
+        <div class="stat-big blue" id="moneyDrawer">0.00 ج</div>
+      </div>
+
+    </div>
+
+    <div class="section-title">
+      <h2>آخر الحركات</h2>
+    </div>
+
+    <div id="movementsList" class="list"></div>
+
+  </section>
+
+
+  <!-- REPORTS -->
+  <section class="page" id="page-reports">
+
+    <div class="section-title">
+      <h2>التقارير</h2>
+      <span>ملخص شامل</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-title">عدد المنتجات</div>
+        <div class="card-value" id="reportProducts">0</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">قيمة المخزون</div>
+        <div class="card-value" id="reportStock">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">مبيعات المنتجات</div>
+        <div class="card-value blue" id="reportSales">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">ربح المنتجات</div>
+        <div class="card-value green" id="reportProductProfit">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">إيراد الصيانة</div>
+        <div class="card-value purple" id="reportRepairRevenue">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">ربح الصيانة</div>
+        <div class="card-value green" id="reportRepairProfit">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">المصروفات</div>
+        <div class="card-value red" id="reportExpenses">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الربح التشغيلي</div>
+        <div class="card-value green" id="reportOperatingProfit">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">الخصومات</div>
+        <div class="card-value orange" id="reportDiscounts">0.00 ج</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">المشتريات</div>
+        <div class="card-value" id="reportPurchases">0.00 ج</div>
+      </div>
+
+    </div>
+
+
+    <div class="section-title">
+      <h2>حالة اليوم</h2>
+    </div>
+
+    <div id="currentDayReport"></div>
+
+
+    <div class="section-title">
+      <h2>سجل الأيام</h2>
+      <span>إغلاق الأيام السابقة</span>
+    </div>
+
+    <div id="daysHistory"></div>
+
+  </section>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom">
+  <div class="bottom-inner">
+
+    <button class="nav-btn active" data-page="home" onclick="showPage('home',this)">
+      <b>⌂</b>
+      الرئيسية
+    </button>
+
+    <button class="nav-btn" data-page="products" onclick="showPage('products',this)">
+      <b>▣</b>
+      المخزون
+    </button>
+
+    <button class="nav-btn" data-page="sales" onclick="showPage('sales',this)">
+      <b>↗</b>
+      المبيعات
+    </button>
+
+    <button class="nav-btn" data-page="money" onclick="showPage('money',this)">
+      <b>◉</b>
+      الأموال
+    </button>
+
+    <button class="nav-btn" data-page="reports" onclick="showPage('reports',this)">
+      <b>▤</b>
+      التقارير
+    </button>
+
+  </div>
+</nav>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>إضافة منتج</h3>
+      <button class="close" onclick="closeModal('productModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">اسم المنتج</label>
+      <input id="productName" class="input" placeholder="مثال: كابل X Scoot">
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">سعر البيع</label>
+        <input id="productSalePrice" class="input" type="number" min="0">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">التكلفة</label>
+        <input id="productCost" class="input" type="number" min="0">
+      </div>
+
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">الكمية</label>
+        <input id="productQty" class="input" type="number" min="0" value="1">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">أقل سعر بيع</label>
+        <input id="productMinPrice" class="input" type="number" min="0">
+      </div>
+
+    </div>
+
+    <button class="primary" onclick="saveProduct()">حفظ المنتج</button>
+
+  </div>
+</div>
+
+
+<!-- SALE MODAL -->
+
+<div class="modal" id="saleModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>بيع منتج</h3>
+      <button class="close" onclick="closeModal('saleModal')">×</button>
+    </div>
+
+    <div id="saleWarning"></div>
+
+    <div class="form-group">
+      <label class="form-label">المنتج</label>
+      <select id="saleProduct" onchange="updateSaleProduct()"></select>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">الكمية</label>
+        <input id="saleQty" class="input" type="number" min="1" value="1" oninput="calculateSale()">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">سعر الوحدة</label>
+        <input id="salePrice" class="input" type="number" min="0" oninput="calculateSale()">
+      </div>
+
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">نوع الخصم</label>
+
+        <select id="discountType" onchange="calculateSale()">
+          <option value="fixed">مبلغ</option>
+          <option value="percent">نسبة %</option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">قيمة الخصم</label>
+        <input id="discountValue" class="input" type="number" min="0" value="0" oninput="calculateSale()">
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+
+      <div class="card-title">الإجمالي</div>
+
+      <div class="form-grid">
+
+        <div>
+          <div class="card-title">قبل الخصم</div>
+          <strong id="saleGrossPreview">0.00 ج</strong>
+        </div>
+
+        <div>
+          <div class="card-title">الخصم</div>
+          <strong id="saleDiscountPreview" class="orange">0.00 ج</strong>
+        </div>
+
+      </div>
+
+      <div style="margin-top:14px">
+        <div class="card-title">الصافي</div>
+        <div class="stat-big green" id="saleNetPreview">0.00 ج</div>
+      </div>
+
+      <div style="margin-top:10px">
+        <div class="card-title">الربح المتوقع</div>
+        <strong id="saleProfitPreview" class="green">0.00 ج</strong>
+      </div>
+
+    </div>
+
+    <button class="primary" onclick="saveSale()">تأكيد البيع</button>
+
+  </div>
+</div>
+
+
+<!-- MOVEMENT MODAL -->
+
+<div class="modal" id="movementModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>حركة مالية</h3>
+      <button class="close" onclick="closeModal('movementModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">الحساب</label>
+
+      <select id="movementAccount">
+        <option value="cash">كاش</option>
+        <option value="instapay">InstaPay</option>
+        <option value="vodafone">Vodafone Cash</option>
+        <option value="salesDrawer">درج المبيعات</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">نوع الحركة</label>
+
+      <select id="movementType">
+        <option value="add">إضافة</option>
+        <option value="subtract">سحب</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">المبلغ</label>
+      <input id="movementAmount" class="input" type="number" min="0">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">ملاحظات</label>
+      <textarea id="movementNote" placeholder="اختياري"></textarea>
+    </div>
+
+    <button class="primary" onclick="saveMovement()">حفظ الحركة</button>
+
+  </div>
+</div>
+
+
+<!-- EXPENSE MODAL -->
+
+<div class="modal" id="expenseModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>إضافة مصروف</h3>
+      <button class="close" onclick="closeModal('expenseModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">نوع المصروف</label>
+      <input id="expenseName" class="input" placeholder="مثال: كهرباء">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">الحساب</label>
+
+      <select id="expenseAccount">
+        <option value="cash">كاش</option>
+        <option value="instapay">InstaPay</option>
+        <option value="vodafone">Vodafone Cash</option>
+        <option value="salesDrawer">درج المبيعات</option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">المبلغ</label>
+      <input id="expenseAmount" class="input" type="number" min="0">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">ملاحظات</label>
+      <textarea id="expenseNote"></textarea>
+    </div>
+
+    <button class="primary" onclick="saveExpense()">حفظ المصروف</button>
+
+  </div>
+</div>
+
+
+<!-- REPAIR MODAL -->
+
+<div class="modal" id="repairModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>إضافة صيانة</h3>
+      <button class="close" onclick="closeModal('repairModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">اسم/وصف الصيانة</label>
+      <input id="repairName" class="input" placeholder="مثال: تغيير شاشة">
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">سعر العميل</label>
+        <input id="repairPrice" class="input" type="number" min="0">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">التكلفة</label>
+        <input id="repairCost" class="input" type="number" min="0">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">طريقة الدفع</label>
+
+      <select id="repairMethod">
+        <option value="cash">كاش</option>
+        <option value="instapay">InstaPay</option>
+        <option value="vodafone">Vodafone Cash</option>
+      </select>
+
+    </div>
+
+    <button class="primary" onclick="saveRepair()">حفظ الصيانة</button>
+
+  </div>
+</div>
+
+
+<!-- PURCHASE MODAL -->
+
+<div class="modal" id="purchaseModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>شراء بضاعة</h3>
+      <button class="close" onclick="closeModal('purchaseModal')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">المنتج</label>
+      <select id="purchaseProduct"></select>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">الكمية</label>
+        <input id="purchaseQty" class="input" type="number" min="1" value="1">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">سعر التكلفة للوحدة</label>
+        <input id="purchaseCost" class="input" type="number" min="0">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">الدفع من</label>
+
+      <select id="purchaseAccount">
+        <option value="cash">كاش</option>
+        <option value="instapay">InstaPay</option>
+        <option value="vodafone">Vodafone Cash</option>
+        <option value="salesDrawer">درج المبيعات</option>
+      </select>
+
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">إجمالي الشراء</div>
+      <div class="stat-big red" id="purchaseTotal">0.00 ج</div>
+    </div>
+
+    <button class="primary" onclick="savePurchase()">تأكيد الشراء</button>
+
+  </div>
+</div>
+
+
+<!-- DAY MODAL -->
+
+<div class="modal" id="dayModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3 id="dayModalTitle">فتح يوم جديد</h3>
+      <button class="close" onclick="closeModal('dayModal')">×</button>
+    </div>
+
+    <div id="dayModalContent"></div>
+
+  </div>
+</div>
+
+
+<!-- HISTORY DETAIL -->
+
+<div class="modal" id="historyModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>تفاصيل اليوم</h3>
+      <button class="close" onclick="closeModal('historyModal')">×</button>
+    </div>
+
+    <div id="historyContent"></div>
+
+  </div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================
+   DATABASE
+========================= */
+
+const KEY = "perfect_manager_clean_v1";
+
+let db = {
+
+  products:[],
+  sales:[],
+  movements:[],
+  expenses:[],
+  repairs:[],
+  purchases:[],
+
+  balances:{
+    cash:0,
+    instapay:0,
+    vodafone:0,
+    salesDrawer:0
+  },
+
+  day:{
+    open:false,
+    date:null,
+    openedAt:null,
+
+    start:{
+      cash:0,
+      instapay:0,
+      vodafone:0,
+      salesDrawer:0
+    }
+  },
+
+  days:[]
+};
+
+
+/* =========================
+   BASIC HELPERS
+========================= */
+
+function saveDB(){
+  localStorage.setItem(KEY,JSON.stringify(db));
+}
+
+function loadDB(){
+
+  let saved=localStorage.getItem(KEY);
+
+  if(saved){
+
+    try{
+      db=JSON.parse(saved);
+    }catch(e){}
+  }
+
+  /* normalization */
+
+  if(!db.products) db.products=[];
+  if(!db.sales) db.sales=[];
+  if(!db.movements) db.movements=[];
+  if(!db.expenses) db.expenses=[];
+  if(!db.repairs) db.repairs=[];
+  if(!db.purchases) db.purchases=[];
+  if(!db.days) db.days=[];
+
+  if(!db.balances){
+    db.balances={
+      cash:0,
+      instapay:0,
+      vodafone:0,
+      salesDrawer:0
+    };
+  }
+
+  if(typeof db.balances.cash!=="number") db.balances.cash=0;
+  if(typeof db.balances.instapay!=="number") db.balances.instapay=0;
+  if(typeof db.balances.vodafone!=="number") db.balances.vodafone=0;
+  if(typeof db.balances.salesDrawer!=="number") db.balances.salesDrawer=0;
+
+  if(!db.day){
+    db.day={
+      open:false,
+      date:null,
+      openedAt:null,
+      start:{
+        cash:0,
+        instapay:0,
+        vodafone:0,
+        salesDrawer:0
+      }
+    };
+  }
+
+  if(!db.day.start){
+    db.day.start={
+      cash:0,
+      instapay:0,
+      vodafone:0,
+      salesDrawer:0
+    };
+  }
+
+  saveDB();
+}
+
+
+function money(n){
+  return Number(n||0).toLocaleString("en-US",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  })+" ج";
+}
+
+
+function num(v){
+  return Number(v)||0;
+}
+
+
+function now(){
+  const d=new Date();
+
+  return {
+    date:d.toLocaleDateString("en-CA"),
+    time:d.toLocaleTimeString("ar-EG",{
+      hour:"2-digit",
+      minute:"2-digit"
+    }),
+    iso:d.toISOString()
+  };
+}
+
+
+function today(){
+  return now().date;
+}
+
+
+function accountName(a){
+
+  if(a==="cash") return "كاش";
+  if(a==="instapay") return "InstaPay";
+  if(a==="vodafone") return "Vodafone Cash";
+  if(a==="salesDrawer") return "درج المبيعات";
+
+  return a;
+}
+
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+
+  el.textContent=message;
+  el.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    el.classList.remove("show");
+  },2200);
+}
+
+
+function openModal(id){
+  document.getElementById(id).classList.add("show");
+}
+
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("show");
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(page,btn){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById("page-"+page).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(btn) btn.classList.add("active");
+
+  if(page==="home") renderDashboard();
+  if(page==="products") renderProducts();
+  if(page==="sales") renderSales();
+  if(page==="money") renderMoney();
+  if(page==="reports") renderReports();
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function serviceBalance(){
+
+  return (
+    num(db.balances.cash)+
+    num(db.balances.instapay)+
+    num(db.balances.vodafone)
+  );
+}
+
+
+function totalBalance(){
+
+  return serviceBalance()+num(db.balances.salesDrawer);
+}
+
+
+function todaySalesTotal(){
+
+  return db.sales
+    .filter(s=>s.date===today())
+    .reduce((a,s)=>a+num(s.net),0);
+}
+
+
+function todayProductProfit(){
+
+  return db.sales
+    .filter(s=>s.date===today())
+    .reduce((a,s)=>a+num(s.profit),0);
+}
+
+
+function todayRepairRevenue(){
+
+  return db.repairs
+    .filter(r=>r.date===today())
+    .reduce((a,r)=>a+num(r.price),0);
+}
+
+
+function todayRepairProfit(){
+
+  return db.repairs
+    .filter(r=>r.date===today())
+    .reduce((a,r)=>a+num(r.profit),0);
+}
+
+
+function todayExpenses(){
+
+  return db.expenses
+    .filter(e=>e.date===today())
+    .reduce((a,e)=>a+num(e.amount),0);
+}
+
+
+function todayDiscounts(){
+
+  return db.sales
+    .filter(s=>s.date===today())
+    .reduce((a,s)=>a+num(s.discount),0);
+}
+
+
+function todayOperatingProfit(){
+
+  return todayProductProfit()
+       +todayRepairProfit()
+       -todayExpenses();
+}
+
+
+function stockValue(){
+
+  return db.products.reduce(
+    (a,p)=>a+(num(p.qty)*num(p.cost)),
+    0
+  );
+}
+
+
+function renderDashboard(){
+
+  document.getElementById("heroTotal").textContent=money(totalBalance());
+
+  document.getElementById("heroSalesDrawer").textContent=
+    money(db.balances.salesDrawer);
+
+  document.getElementById("heroServices").textContent=
+    money(serviceBalance());
+
+  document.getElementById("todaySales").textContent=
+    money(todaySalesTotal());
+
+  document.getElementById("productProfit").textContent=
+    money(todayProductProfit());
+
+  document.getElementById("repairRevenue").textContent=
+    money(todayRepairRevenue());
+
+  document.getElementById("operatingProfit").textContent=
+    money(todayOperatingProfit());
+
+  document.getElementById("discounts").textContent=
+    money(todayDiscounts());
+
+  document.getElementById("stockValue").textContent=
+    money(stockValue());
+
+  document.getElementById("serviceTotal").textContent=
+    money(serviceBalance());
+
+  document.getElementById("cashBalance").textContent=
+    money(db.balances.cash);
+
+  document.getElementById("vodafoneBalance").textContent=
+    money(db.balances.vodafone);
+
+  document.getElementById("instapayBalance").textContent=
+    money(db.balances.instapay);
+
+  document.getElementById("dayStatus").textContent=
+    db.day.open ? "اليوم مفتوح" : "اليوم مغلق";
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+function openProductModal(){
+
+  document.getElementById("productName").value="";
+  document.getElementById("productSalePrice").value="";
+  document.getElementById("productCost").value="";
+  document.getElementById("productQty").value=1;
+  document.getElementById("productMinPrice").value="";
+
+  openModal("productModal");
+}
+
+
+function saveProduct(){
+
+  const name=document.getElementById("productName").value.trim();
+  const salePrice=num(document.getElementById("productSalePrice").value);
+  const cost=num(document.getElementById("productCost").value);
+  const qty=num(document.getElementById("productQty").value);
+  let minPrice=num(document.getElementById("productMinPrice").value);
+
+  if(!name){
+    toast("اكتب اسم المنتج");
+    return;
+  }
+
+  if(salePrice<0 || cost<0 || qty<0){
+    toast("راجع البيانات");
+    return;
+  }
+
+  if(!minPrice) minPrice=cost;
+
+  if(minPrice<cost){
+    toast("أقل سعر لا يمكن أن يكون أقل من التكلفة");
+    return;
+  }
+
+  db.products.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    salePrice:salePrice,
+
+    cost:cost,
+
+    qty:qty,
+
+    minPrice:minPrice,
+
+    createdAt:now().iso
+
+  });
+
+  saveDB();
+
+  closeModal("productModal");
+
+  renderAll();
+
+  toast("تم إضافة المنتج");
+}
+
+
+function renderProducts(){
+
+  const list=document.getElementById("productsList");
+
+  const search=(document.getElementById("productSearch")?.value||"")
+    .trim()
+    .toLowerCase();
+
+  const products=db.products.filter(p=>
+    p.name.toLowerCase().includes(search)
+  );
+
+  document.getElementById("productCount").textContent=
+    db.products.length+" منتج";
+
+  if(!products.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد منتجات حالياً
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML=products.map(p=>{
+
+    const profit=num(p.salePrice)-num(p.cost);
+
+    return `
+
+      <div class="product">
+
+        <div class="product-top">
+
+          <div>
+            <div class="product-name">${escapeHTML(p.name)}</div>
+
+            <div class="badge ${num(p.qty)<=2 ? "low":""}">
+              المخزون: ${num(p.qty)}
+            </div>
+          </div>
+
+          <div class="product-price">
+            ${money(p.salePrice)}
+          </div>
+
+        </div>
+
+        <div class="product-meta">
+
+          <span>
+            التكلفة: ${money(p.cost)}
+          </span>
+
+          <span class="product-profit">
+            ربح الوحدة: ${money(profit)}
+          </span>
+
+        </div>
+
+        <div class="product-meta">
+
+          <span>
+            أقل بيع: ${money(p.minPrice)}
+          </span>
+
+          <span>
+            قيمة المخزون: ${money(num(p.qty)*num(p.cost))}
+          </span>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+/* =========================
+   SALES
+========================= */
+
+function openSaleModal(){
+
+  if(!db.products.length){
+    toast("أضف منتج أولاً");
+    return;
+  }
+
+  const select=document.getElementById("saleProduct");
+
+  select.innerHTML=db.products.map(p=>`
+    <option value="${p.id}">
+      ${escapeHTML(p.name)} — مخزون ${p.qty}
+    </option>
+  `).join("");
+
+  document.getElementById("saleQty").value=1;
+
+  updateSaleProduct();
+
+  document.getElementById("discountValue").value=0;
+
+  document.getElementById("saleWarning").innerHTML="";
+
+  openModal("saleModal");
+}
+
+
+function updateSaleProduct(){
+
+  const id=Number(document.getElementById("saleProduct").value);
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(!p) return;
+
+  document.getElementById("salePrice").value=p.salePrice;
+
+  calculateSale();
+}
+
+
+function calculateSale(){
+
+  const id=Number(document.getElementById("saleProduct").value);
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(!p) return;
+
+  const qty=Math.max(1,num(document.getElementById("saleQty").value));
+  const price=Math.max(0,num(document.getElementById("salePrice").value));
+
+  const type=document.getElementById("discountType").value;
+
+  const discountValue=Math.max(
+    0,
+    num(document.getElementById("discountValue").value)
+  );
+
+  const gross=qty*price;
+
+  let discount=0;
+
+  if(type==="percent"){
+    discount=gross*(discountValue/100);
+  }else{
+    discount=discountValue;
+  }
+
+  if(discount>gross) discount=gross;
+
+  const net=gross-discount;
+
+  const finalUnit=qty ? net/qty : 0;
+
+  const profit=(finalUnit-num(p.cost))*qty;
+
+  document.getElementById("saleGrossPreview").textContent=
+    money(gross);
+
+  document.getElementById("saleDiscountPreview").textContent=
+    money(discount);
+
+  document.getElementById("saleNetPreview").textContent=
+    money(net);
+
+  document.getElementById("saleProfitPreview").textContent=
+    money(profit);
+
+  let warnings="";
+
+  if(finalUnit<num(p.cost)){
+    warnings+=`
+      <div class="warning">
+        ⚠️ السعر النهائي أقل من تكلفة المنتج.
+      </div>
+    `;
+  }
+
+  if(finalUnit<num(p.minPrice)){
+    warnings+=`
+      <div class="warning">
+        ⚠️ السعر النهائي أقل من أقل سعر بيع محدد.
+      </div>
+    `;
+  }
+
+  if(qty>num(p.qty)){
+    warnings+=`
+      <div class="warning">
+        ⚠️ الكمية المطلوبة أكبر من المخزون المتاح.
+      </div>
+    `;
+  }
+
+  document.getElementById("saleWarning").innerHTML=warnings;
+}
+
+
+function saveSale(){
+
+  const id=Number(document.getElementById("saleProduct").value);
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(!p){
+    toast("اختر منتج");
+    return;
+  }
+
+  const qty=num(document.getElementById("saleQty").value);
+  const price=num(document.getElementById("salePrice").value);
+
+  if(qty<=0 || price<0){
+    toast("راجع الكمية والسعر");
+    return;
+  }
+
+  if(qty>num(p.qty)){
+    if(!confirm("الكمية أكبر من المخزون. هل تريد الاستمرار؟")){
+      return;
+    }
+  }
+
+  const type=document.getElementById("discountType").value;
+  const discountValue=num(document.getElementById("discountValue").value);
+
+  const gross=qty*price;
+
+  let discount=0;
+
+  if(type==="percent"){
+    discount=gross*(discountValue/100);
+  }else{
+    discount=discountValue;
+  }
+
+  if(discount>gross) discount=gross;
+
+  const net=gross-discount;
+
+  const finalUnit=qty ? net/qty : 0;
+
+  if(finalUnit<num(p.cost)){
+
+    if(!confirm(
+      "السعر النهائي أقل من التكلفة. هل تريد تسجيل البيع؟"
+    )){
+      return;
+    }
+  }
+
+  if(finalUnit<num(p.minPrice)){
+
+    if(!confirm(
+      "السعر النهائي أقل من أقل سعر بيع. هل تريد تسجيل البيع؟"
+    )){
+      return;
+    }
+  }
+
+  const profit=(finalUnit-num(p.cost))*qty;
+
+  const n=now();
+
+  db.sales.unshift({
+
+    id:Date.now(),
+
+    productId:p.id,
+
+    productName:p.name,
+
+    qty:qty,
+
+    unitPrice:price,
+
+    gross:gross,
+
+    discount:discount,
+
+    net:net,
+
+    cost:num(p.cost)*qty,
+
+    profit:profit,
+
+    date:n.date,
+
+    time:n.time,
+
+    createdAt:n.iso
+
+  });
+
+  p.qty-=qty;
+
+  db.balances.salesDrawer+=net;
+
+  saveDB();
+
+  closeModal("saleModal");
+
+  renderAll();
+
+  toast("تم تسجيل البيع");
+}
+
+
+function renderSales(){
+
+  const sales=db.sales;
+
+  const gross=sales.reduce((a,s)=>a+num(s.gross),0);
+  const discounts=sales.reduce((a,s)=>a+num(s.discount),0);
+  const net=sales.reduce((a,s)=>a+num(s.net),0);
+  const profit=sales.reduce((a,s)=>a+num(s.profit),0);
+
+  document.getElementById("salesGross").textContent=money(gross);
+  document.getElementById("salesDiscounts").textContent=money(discounts);
+  document.getElementById("salesNet").textContent=money(net);
+  document.getElementById("salesProfit").textContent=money(profit);
+
+  const list=document.getElementById("salesList");
+
+  if(!sales.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد مبيعات حتى الآن
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML=sales.map(s=>`
+
+    <div class="list-item">
+
+      <div class="list-top">
+
+        <div>
+          <div class="list-title">
+            ${escapeHTML(s.productName)}
+          </div>
+
+          <div class="list-date">
+            ${s.date} — ${s.time}
+          </div>
+        </div>
+
+        <strong class="green">
+          ${money(s.net)}
+        </strong>
+
+      </div>
+
+      <div class="list-details">
+
+        <span>
+          الكمية: ${s.qty}
+        </span>
+
+        <span>
+          خصم: ${money(s.discount)}
+        </span>
+
+        <span class="green">
+          ربح: ${money(s.profit)}
+        </span>
+
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   MONEY / MOVEMENTS
+========================= */
+
+function openMovementModal(){
+
+  document.getElementById("movementAmount").value="";
+  document.getElementById("movementNote").value="";
+  document.getElementById("movementType").value="add";
+
+  openModal("movementModal");
+}
+
+
+function saveMovement(){
+
+  const account=document.getElementById("movementAccount").value;
+  const type=document.getElementById("movementType").value;
+  const amount=num(document.getElementById("movementAmount").value);
+  const note=document.getElementById("movementNote").value.trim();
+
+  if(amount<=0){
+    toast("اكتب مبلغ صحيح");
+    return;
+  }
+
+  if(type==="subtract" && db.balances[account]-amount<0){
+
+    if(!confirm(
+      "الرصيد سيصبح بالسالب. هل تريد الاستمرار؟"
+    )){
+      return;
+    }
+  }
+
+  if(type==="add"){
+    db.balances[account]+=amount;
+  }else{
+    db.balances[account]-=amount;
+  }
+
+  const n=now();
+
+  db.movements.unshift({
+
+    id:Date.now(),
+
+    account:account,
+
+    type:type,
+
+    amount:amount,
+
+    note:note,
+
+    date:n.date,
+
+    time:n.time,
+
+    createdAt:n.iso
+
+  });
+
+  saveDB();
+
+  closeModal("movementModal");
+
+  renderAll();
+
+  toast("تم تسجيل الحركة");
+}
+
+
+function openExpenseModal(){
+
+  document.getElementById("expenseName").value="";
+  document.getElementById("expenseAmount").value="";
+  document.getElementById("expenseNote").value="";
+
+  openModal("expenseModal");
+}
+
+
+function saveExpense(){
+
+  const name=document.getElementById("expenseName").value.trim();
+  const account=document.getElementById("expenseAccount").value;
+  const amount=num(document.getElementById("expenseAmount").value);
+  const note=document.getElementById("expenseNote").value.trim();
+
+  if(!name){
+    toast("اكتب نوع المصروف");
+    return;
+  }
+
+  if(amount<=0){
+    toast("اكتب مبلغ صحيح");
+    return;
+  }
+
+  if(db.balances[account]-amount<0){
+
+    if(!confirm(
+      "الرصيد سيصبح بالسالب. هل تريد تسجيل المصروف؟"
+    )){
+      return;
+    }
+  }
+
+  db.balances[account]-=amount;
+
+  const n=now();
+
+  db.expenses.unshift({
+
+    id:Date.now(),
+
+    name:name,
+
+    account:account,
+
+    amount:amount,
+
+    note:note,
+
+    date:n.date,
+
+    time:n.time,
+
+    createdAt:n.iso
+
+  });
+
+  saveDB();
+
+  closeModal("expenseModal");
+
+  renderAll();
+
+  toast("تم تسجيل المصروف");
+}
+
+
+function renderMoney(){
+
+  document.getElementById("moneyCash").textContent=
+    money(db.balances.cash);
+
+  document.getElementById("moneyVodafone").textContent=
+    money(db.balances.vodafone);
+
+  document.getElementById("moneyInstapay").textContent=
+    money(db.balances.instapay);
+
+  document.getElementById("moneyDrawer").textContent=
+    money(db.balances.salesDrawer);
+
+  const list=document.getElementById("movementsList");
+
+  if(!db.movements.length){
+
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد حركات مالية
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML=db.movements.slice(0,30).map(m=>`
+
+    <div class="list-item">
+
+      <div class="list-top">
+
+        <div>
+          <div class="list-title">
+            ${m.type==="add" ? "إضافة" : "سحب"} —
+            ${accountName(m.account)}
+          </div>
+
+          <div class="list-date">
+            ${m.date} — ${m.time}
+          </div>
+        </div>
+
+        <strong class="${m.type==="add"?"green":"red"}">
+          ${m.type==="add"?"+":"-"}${money(m.amount)}
+        </strong>
+
+      </div>
+
+      ${m.note ? `
+        <div class="list-details">
+          <span>${escapeHTML(m.note)}</span>
+        </div>
+      `:""}
+
+    </div>
+
+  `).join("");
+}
+
+
+/* =========================
+   REPAIR
+========================= */
+
+function openRepairModal(){
+
+  document.getElementById("repairName").value="";
+  document.getElementById("repairPrice").value="";
+  document.getElementById("repairCost").value="";
+
+  openModal("repairModal");
+}
+
+
+function saveRepair(){
+
+  const name=document.getElementById("repairName").value.trim();
+  const price=num(document.getElementById("repairPrice").value);
+  const cost=num(document.getElementById("repairCost").value);
+  const method=document.getElementById("repairMethod").value;
+
+  if(!name){
+    toast("اكتب وصف الصيانة");
+    return;
+  }
+
+  if(price<0 || cost<0){
+    toast("راجع الأسعار");
+    return;
+  }
+
+  const profit=price-cost;
+  const n=now();
+
+  db.repairs.unshift({
+
+    id:Date.now(),
+
+    name:name,
+
+    price:price,
+
+    cost:cost,
+
+    profit:profit,
+
+    method:method,
+
+    date:n.date,
+
+    time:n.time,
+
+    createdAt:n.iso
+
+  });
+
+  /*
+    حسب نظام الحسابات المتفق عليه:
+    دخل الصيانة يدخل درج المبيعات.
+  */
+
+  db.balances.salesDrawer+=price;
+
+  saveDB();
+
+  closeModal("repairModal");
+
+  renderAll();
+
+  toast("تم تسجيل الصيانة");
+}
+
+
+/* =========================
+   PURCHASES
+========================= */
+
+function openPurchaseModal(){
+
+  if(!db.products.length){
+    toast("أضف منتج أولاً");
+    return;
+  }
+
+  const select=document.getElementById("purchaseProduct");
+
+  select.innerHTML=db.products.map(p=>`
+    <option value="${p.id}">
+      ${escapeHTML(p.name)}
+    </option>
+  `).join("");
+
+  document.getElementById("purchaseQty").value=1;
+
+  updatePurchaseCost();
+
+  openModal("purchaseModal");
+}
+
+
+function updatePurchaseCost(){
+
+  const id=Number(document.getElementById("purchaseProduct").value);
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(!p) return;
+
+  document.getElementById("purchaseCost").value=p.cost;
+
+  calculatePurchase();
+}
+
+
+function calculatePurchase(){
+
+  const qty=num(document.getElementById("purchaseQty").value);
+  const cost=num(document.getElementById("purchaseCost").value);
+
+  document.getElementById("purchaseTotal").textContent=
+    money(qty*cost);
+}
+
+
+document.getElementById("purchaseProduct")
+.addEventListener("change",updatePurchaseCost);
+
+document.getElementById("purchaseQty")
+.addEventListener("input",calculatePurchase);
+
+document.getElementById("purchaseCost")
+.addEventListener("input",calculatePurchase);
+
+
+function savePurchase(){
+
+  const id=Number(document.getElementById("purchaseProduct").value);
+
+  const p=db.products.find(x=>x.id===id);
+
+  if(!p){
+    toast("اختر المنتج");
+    return;
+  }
+
+  const qty=num(document.getElementById("purchaseQty").value);
+  const cost=num(document.getElementById("purchaseCost").value);
+  const account=document.getElementById("purchaseAccount").value;
+
+  if(qty<=0 || cost<0){
+    toast("راجع البيانات");
+    return;
+  }
+
+  const total=qty*cost;
+
+  if(db.balances[account]-total<0){
+
+    if(!confirm(
+      "الرصيد سيصبح بالسالب. هل تريد تسجيل الشراء؟"
+    )){
+      return;
+    }
+  }
+
+  db.balances[account]-=total;
+
+  p.qty+=qty;
+
+  p.cost=cost;
+
+  if(num(p.minPrice)<cost){
+    p.minPrice=cost;
+  }
+
+  const n=now();
+
+  db.purchases.unshift({
+
+    id:Date.now(),
+
+    productId:p.id,
+
+    productName:p.name,
+
+    qty:qty,
+
+    unitCost:cost,
+
+    total:total,
+
+    account:account,
+
+    date:n.date,
+
+    time:n.time,
+
+    createdAt:n.iso
+
+  });
+
+  saveDB();
+
+  closeModal("purchaseModal");
+
+  renderAll();
+
+  toast("تم تسجيل الشراء");
+}
+
+
+/* =========================
+   DAY MANAGEMENT
+========================= */
+
+function openDayModal(){
+
+  if(db.day.open){
+
+    openCloseDayModal();
+
+  }else{
+
+    openOpenDayModal();
+
+  }
+}
+
+
+function openOpenDayModal(){
+
+  const last=db.days.length
+    ? db.days[db.days.length-1]
+    : null;
+
+  const start=last
+    ? last.actualEnd
+    : db.balances;
+
+  document.getElementById("dayModalTitle").textContent=
+    "فتح يوم جديد";
+
+  document.getElementById("dayModalContent").innerHTML=`
+
+    <div class="success-box">
+      اليوم الحالي مغلق. أدخل أرصدة بداية اليوم.
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">الكاش</label>
+        <input id="openCash" class="input" type="number" value="${num(start.cash)}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Vodafone Cash</label>
+        <input id="openVodafone" class="input" type="number" value="${num(start.vodafone)}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">InstaPay</label>
+        <input id="openInstapay" class="input" type="number" value="${num(start.instapay)}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">درج المبيعات</label>
+        <input id="openDrawer" class="input" type="number" value="${num(start.salesDrawer)}">
+      </div>
+
+    </div>
+
+    <button class="primary" onclick="openNewDay()">
+      فتح اليوم
+    </button>
+
+  `;
+
+  openModal("dayModal");
+}
+
+
+function openNewDay(){
+
+  const start={
+
+    cash:num(document.getElementById("openCash").value),
+
+    vodafone:num(document.getElementById("openVodafone").value),
+
+    instapay:num(document.getElementById("openInstapay").value),
+
+    salesDrawer:num(document.getElementById("openDrawer").value)
+
+  };
+
+  db.balances={...start};
+
+  db.day={
+
+    open:true,
+
+    date:today(),
+
+    openedAt:now().iso,
+
+    start:start
+
+  };
+
+  saveDB();
+
+  closeModal("dayModal");
+
+  renderAll();
+
+  toast("تم فتح اليوم");
+}
+
+
+function openCloseDayModal(){
+
+  const expected=db.balances;
+
+  document.getElementById("dayModalTitle").textContent=
+    "إغلاق اليوم";
+
+  document.getElementById("dayModalContent").innerHTML=`
+
+    <div class="warning">
+      راجع النقدية والحسابات فعلياً قبل الإغلاق.
+    </div>
+
+    <div class="recon">
+
+      <div class="recon-row">
+        <span>الكاش المتوقع</span>
+        <strong>${money(expected.cash)}</strong>
+      </div>
+
+      <div class="recon-row">
+        <span>Vodafone المتوقع</span>
+        <strong>${money(expected.vodafone)}</strong>
+      </div>
+
+      <div class="recon-row">
+        <span>InstaPay المتوقع</span>
+        <strong>${money(expected.instapay)}</strong>
+      </div>
+
+      <div class="recon-row">
+        <span>درج المبيعات المتوقع</span>
+        <strong>${money(expected.salesDrawer)}</strong>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label class="form-label">الكاش الفعلي</label>
+        <input id="actualCash" class="input" type="number" value="${expected.cash}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Vodafone الفعلي</label>
+        <input id="actualVodafone" class="input" type="number" value="${expected.vodafone}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">InstaPay الفعلي</label>
+        <input id="actualInstapay" class="input" type="number" value="${expected.instapay}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">درج المبيعات الفعلي</label>
+        <input id="actualDrawer" class="input" type="number" value="${expected.salesDrawer}">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">ملاحظات الإغلاق</label>
+      <textarea id="closeNote" placeholder="مثال: فرق بسيط في الكاش..."></textarea>
+    </div>
+
+    <button class="primary" onclick="closeDay()">
+      إغلاق اليوم
+    </button>
+
+  `;
+
+  openModal("dayModal");
+}
+
+
+function closeDay(){
+
+  const actual={
+
+    cash:num(document.getElementById("actualCash").value),
+
+    vodafone:num(document.getElementById("actualVodafone").value),
+
+    instapay:num(document.getElementById("actualInstapay").value),
+
+    salesDrawer:num(document.getElementById("actualDrawer").value)
+
+  };
+
+  const expected={...db.balances};
+
+  const diff={
+
+    cash:actual.cash-expected.cash,
+
+    vodafone:actual.vodafone-expected.vodafone,
+
+    instapay:actual.instapay-expected.instapay,
+
+    salesDrawer:actual.salesDrawer-expected.salesDrawer
+
+  };
+
+  const totalDiff=
+    diff.cash+
+    diff.vodafone+
+    diff.instapay+
+    diff.salesDrawer;
+
+  const note=document.getElementById("closeNote").value.trim();
+
+  if(totalDiff!==0){
+
+    const ok=confirm(
+      "يوجد فرق في الإغلاق بقيمة "+
+      money(totalDiff)+
+      ". هل تريد إغلاق اليوم؟"
+    );
+
+    if(!ok) return;
+  }
+
+  const dayRecord={
+
+    id:Date.now(),
+
+    date:db.day.date,
+
+    openedAt:db.day.openedAt,
+
+    closedAt:now().iso,
+
+    start:{...db.day.start},
+
+    expectedEnd:expected,
+
+    actualEnd:actual,
+
+    diff:diff,
+
+    totalDiff:totalDiff,
+
+    note:note,
+
+    sales:todaySalesTotal(),
+
+    productProfit:todayProductProfit(),
+
+    repairRevenue:todayRepairRevenue(),
+
+    repairProfit:todayRepairProfit(),
+
+    expenses:todayExpenses(),
+
+    discounts:todayDiscounts(),
+
+    purchases:db.purchases
+      .filter(p=>p.date===today())
+      .reduce((a,p)=>a+num(p.total),0),
+
+    operatingProfit:todayOperatingProfit()
+
+  };
+
+  db.days.push(dayRecord);
+
+  db.balances={...actual};
+
+  db.day={
+
+    open:false,
+
+    date:null,
+
+    openedAt:null,
+
+    start:{
+
+      cash:0,
+      instapay:0,
+      vodafone:0,
+      salesDrawer:0
+
+    },
+
+    closedAt:dayRecord.closedAt,
+
+    lastClosedDayId:dayRecord.id,
+
+    end:actual
+
+  };
+
+  saveDB();
+
+  closeModal("dayModal");
+
+  renderAll();
+
+  toast("تم إغلاق اليوم");
+}
+
+
+/* =========================
+   REPORTS
+========================= */
+
+function renderReports(){
+
+  document.getElementById("reportProducts").textContent=
+    db.products.length;
+
+  document.getElementById("reportStock").textContent=
+    money(stockValue());
+
+  const allSales=db.sales.reduce((a,s)=>a+num(s.net),0);
+
+  const allProductProfit=db.sales
+    .reduce((a,s)=>a+num(s.profit),0);
+
+  const allRepairRevenue=db.repairs
+    .reduce((a,r)=>a+num(r.price),0);
+
+  const allRepairProfit=db.repairs
+    .reduce((a,r)=>a+num(r.profit),0);
+
+  const allExpenses=db.expenses
+    .reduce((a,e)=>a+num(e.amount),0);
+
+  const allDiscounts=db.sales
+    .reduce((a,s)=>a+num(s.discount),0);
+
+  const allPurchases=db.purchases
+    .reduce((a,p)=>a+num(p.total),0);
+
+  document.getElementById("reportSales").textContent=
+    money(allSales);
+
+  document.getElementById("reportProductProfit").textContent=
+    money(allProductProfit);
+
+  document.getElementById("reportRepairRevenue").textContent=
+    money(allRepairRevenue);
+
+  document.getElementById("reportRepairProfit").textContent=
+    money(allRepairProfit);
+
+  document.getElementById("reportExpenses").textContent=
+    money(allExpenses);
+
+  document.getElementById("reportOperatingProfit").textContent=
+    money(
+      allProductProfit+
+      allRepairProfit-
+      allExpenses
+    );
+
+  document.getElementById("reportDiscounts").textContent=
+    money(allDiscounts);
+
+  document.getElementById("reportPurchases").textContent=
+    money(allPurchases);
+
+  renderCurrentDayReport();
+  renderDaysHistory();
+}
+
+
+function renderCurrentDayReport(){
+
+  const box=document.getElementById("currentDayReport");
+
+  if(!db.day.open){
+
+    box.innerHTML=`
+      <div class="empty">
+        لا يوجد يوم مفتوح حالياً
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=`
+
+    <div class="card">
+
+      <div class="success-box">
+        اليوم مفتوح — ${db.day.date}
+      </div>
+
+      <div class="history-grid">
+
+        <div class="history-mini">
+          <span>مبيعات</span>
+          <strong>${money(todaySalesTotal())}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>ربح المنتجات</span>
+          <strong>${money(todayProductProfit())}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>إيراد الصيانة</span>
+          <strong>${money(todayRepairRevenue())}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>المصروفات</span>
+          <strong>${money(todayExpenses())}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>الربح التشغيلي</span>
+          <strong>${money(todayOperatingProfit())}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>الخصومات</span>
+          <strong>${money(todayDiscounts())}</strong>
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+function renderDaysHistory(){
+
+  const box=document.getElementById("daysHistory");
+
+  if(!db.days.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        لا توجد أيام مغلقة حتى الآن
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=db.days.slice().reverse().map(d=>`
+
+    <div class="history-card">
+
+      <div class="history-header">
+
+        <strong>${d.date}</strong>
+
+        <span>
+          فرق الإغلاق:
+          <b class="${num(d.totalDiff)===0?'green':'orange'}">
+            ${money(d.totalDiff)}
+          </b>
+        </span>
+
+      </div>
+
+      <div class="history-grid">
+
+        <div class="history-mini">
+          <span>المبيعات</span>
+          <strong>${money(d.sales)}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>ربح المنتجات</span>
+          <strong>${money(d.productProfit)}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>الصيانة</span>
+          <strong>${money(d.repairRevenue)}</strong>
+        </div>
+
+        <div class="history-mini">
+          <span>المصروفات</span>
+          <strong>${money(d.expenses)}</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="secondary"
+        onclick="showDayDetails(${d.id})"
+      >
+        عرض تفاصيل اليوم
+      </button>
+
+    </div>
+
+  `).join("");
+}
+
+
+function showDayDetails(id){
+
+  const d=db.days.find(x=>x.id===id);
+
+  if(!d) return;
+
+  document.getElementById("historyContent").innerHTML=`
+
+    <div class="success-box">
+      يوم ${d.date}
+    </div>
+
+    <div class="history-grid">
+
+      <div class="history-mini">
+        <span>مبيعات المنتجات</span>
+        <strong>${money(d.sales)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>ربح المنتجات</span>
+        <strong>${money(d.productProfit)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>إيراد الصيانة</span>
+        <strong>${money(d.repairRevenue)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>ربح الصيانة</span>
+        <strong>${money(d.repairProfit)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>المصروفات</span>
+        <strong>${money(d.expenses)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>الخصومات</span>
+        <strong>${money(d.discounts)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>المشتريات</span>
+        <strong>${money(d.purchases)}</strong>
+      </div>
+
+      <div class="history-mini">
+        <span>الربح التشغيلي</span>
+        <strong>${money(d.operatingProfit)}</strong>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="section-title">
+      <h2>التسوية</h2>
+    </div>
+
+    <div class="recon">
+
+      ${reconHTML(
+        "الكاش",
+        d.expectedEnd.cash,
+        d.actualEnd.cash,
+        d.diff.cash
+      )}
+
+      ${reconHTML(
+        "Vodafone Cash",
+        d.expectedEnd.vodafone,
+        d.actualEnd.vodafone,
+        d.diff.vodafone
+      )}
+
+      ${reconHTML(
+        "InstaPay",
+        d.expectedEnd.instapay,
+        d.actualEnd.instapay,
+        d.diff.instapay
+      )}
+
+      ${reconHTML(
+        "درج المبيعات",
+        d.expectedEnd.salesDrawer,
+        d.actualEnd.salesDrawer,
+        d.diff.salesDrawer
+      )}
+
+    </div>
+
+    ${d.note ? `
+      <div class="card" style="margin-top:10px">
+        <div class="card-title">ملاحظات</div>
+        <div style="font-size:11px">
+          ${escapeHTML(d.note)}
+        </div>
+      </div>
+    `:""}
+
+  `;
+
+  openModal("historyModal");
+}
+
+
+function reconHTML(name,expected,actual,diff){
+
+  return `
+
+    <div class="recon-row">
+
+      <span>${name}</span>
+
+      <strong class="${diff===0?'green':'orange'}">
+
+        متوقع ${money(expected)}
+        <br>
+
+        فعلي ${money(actual)}
+        <br>
+
+        فرق ${money(diff)}
+
+      </strong>
+
+    </div>
+
+  `;
+}
+
+
+/* =========================
+   UTILITIES
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function renderAll(){
+
+  renderDashboard();
+  renderProducts();
+  renderSales();
+  renderMoney();
+  renderReports();
+
+  document.getElementById("dayStatus").textContent=
+    db.day.open ? "اليوم مفتوح" : "اليوم مغلق";
+}
+
+
+/* =========================
+   MODAL OUTSIDE CLICK
+========================= */
+
+document.querySelectorAll(".modal").forEach(modal=>{
+
+  modal.addEventListener("click",function(e){
+
+    if(e.target===modal){
+      modal.classList.remove("show");
+    }
+
+  });
+
+});
+
+
+/* =========================
+   INIT
+========================= */
+
+loadDB();
+renderAll();
+
+</script>
+
+</body>
+</html>
